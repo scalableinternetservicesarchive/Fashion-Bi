@@ -2940,3 +2940,10 @@ Processing by StaticPagesController#home as HTML
 Completed 200 OK in 82ms (Views: 79.3ms | ActiveRecord: 0.0ms)
 
 
+Started GET "/" for ::1 at 2016-10-14 14:53:34 -0700
+Processing by StaticPagesController#home as HTML
+  Rendering static_pages/home.html.erb within layouts/application
+  Rendered static_pages/home.html.erb within layouts/application (1.7ms)
+Completed 200 OK in 371ms (Views: 358.1ms | ActiveRecord: 0.0ms)
+
+
