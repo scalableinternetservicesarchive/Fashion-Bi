@@ -137,6 +137,10 @@ header .header-content {
     margin-bottom: 2rem;
 }
 
+.fb-login {
+    margin-top: 1em;
+}
+
 @media (min-width: 34em) {
     header {
         min-height: calc(100% - 60px);
