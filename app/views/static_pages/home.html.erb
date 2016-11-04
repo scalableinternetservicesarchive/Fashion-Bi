@@ -1,3 +1,26 @@
+
+<% if user_signed_in? %>
+<header class="intro">
+    <div class = "container">
+        <div class = "row">
+            <h1 class="header-title"> Recommended Clothing </h1>
+        </div>
+        <div class = "row">
+            <div class = "col-lg-4">
+                <%= image_tag("green_bomber.jpeg", :alt => "Browser Mockup", :class => "img-fluid", :size => "500x300") %>
+            </div>
+            <div class = "col-lg-4">
+                <%= image_tag("white-shirt.jpeg", :alt => "Browser Mockup", :class => "img-fluid", :size => "500x300") %>
+            </div>
+            <div class = "col-lg-4">
+            <%= image_tag("biege-chinos.jpeg", :alt => "Browser Mockup", :class => "img-fluid", :size => "500x300") %>
+            </div>
+        </div>
+    </div>
+</header>
+
+<% else %>
+
 <header class="intro">
     <div class="header-content">
         <div class="inner">
@@ -29,3 +52,7 @@
         </div>
     </div>
 </section>
+
+<% end %>
+
+ <%= yield %>
