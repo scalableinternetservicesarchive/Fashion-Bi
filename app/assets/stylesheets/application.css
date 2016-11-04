@@ -29,6 +29,7 @@ body {
     color: #18171f;
     webkit-tap-highlight-color: #222;
     top: 0;
+    background-color: #fafafa;
 }
 
 section {
@@ -139,6 +140,11 @@ header .header-content {
 
 .fb-login {
     margin-top: 1em;
+}
+
+.btn-login {
+    width: 100%;
+    margin-bottom: 1em;
 }
 
 @media (min-width: 34em) {
