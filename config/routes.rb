@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :photos
   devise_for :users
   get 'static_pages/home'
   get 'static_pages/login'
