@@ -4,7 +4,7 @@ class AddImageToPhotos < ActiveRecord::Migration[5.0]
   end
 
   def change
-  	  add_attachment :posts, :image
+  	  add_attachment :photos, :image
   end
   
   def self.down
