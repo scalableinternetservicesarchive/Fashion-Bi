@@ -12,7 +12,9 @@
  *
  *= require_tree .
  *= require_self
- */
+ *= require owl.carousel
+ *= require owl.theme
+*/
 
  /* Titles - #18171f; Subtitles - #747378 */
  /* Navy: rgba(28, 36, 65, 0.93), Sky - #00d2ff*/
