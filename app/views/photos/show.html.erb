@@ -15,5 +15,10 @@
   <%= @photo.color %>
 </p>
 
+<p>
+  <strong>Pic:</strong>
+  <td><%= image_tag @photo.image.url(:square) %></td>
+</p>
+
 <%= link_to 'Edit', edit_photo_path(@photo) %> |
 <%= link_to 'Back', photos_path %>

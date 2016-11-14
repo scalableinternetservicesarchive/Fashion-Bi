@@ -10,6 +10,8 @@ class PhotosController < ApplicationController
   # GET /photos/1
   # GET /photos/1.json
   def show
+    @photo = Photo.where(user_id: 'aa').first
+    #print photo_params
   end
 
   # GET /photos/new
@@ -26,14 +28,59 @@ class PhotosController < ApplicationController
   def create
     @photo = Photo.new(photo_params)
 
+    picUrl = @photo.image.url
+    #Dummy URL set up for localhost
+    #picUrl = "http://pforf.weebly.com/uploads/4/9/2/9/49298831/s218566430444065912_p8_i4_w900.jpeg"
+
+    tag_response = ClarifaiRuby::TagRequest.new.get(picUrl)
+    tags = tag_response.tag_images.first.tags
+    color_response = ClarifaiRuby::ColorRequest.new.get(picUrl)
+    colors = color_response.colors
+
+    #determine the photo tag
+    final_tag = ""
+    tags.each do |tag|
+      case tag.word
+        when "shirt"
+          final_tag = "shirt"
+        when "pants"
+          final_tag = "pants"
+        when "jacket"
+          final_tag = "jacket"
+        when "shoes"
+          final_tag = "shoes"
+      end
+    end
+    # TODO: Prompt user to retake photo if no tag is chosen
+
+    color_list = ["red", "white", "blue", "green", "black", "brown", "purple", "pink"]
+
+    # TODO: Assumes only one color per item
+    final_color = ""
+    colors.each do |colorHash|
+      shouldBreak = false
+      color = colorHash["w3c"]["name"]
+      color_list.each do |golden_color|
+        if color.downcase.include? golden_color
+          final_color = golden_color
+          shouldBreak = true
+          break
+        end
+        if shouldBreak
+          break
+        end
+      end
+    end
+    # TODO: Prompt user to retake photo if no color is chosen
+
+
+    @photo.color = final_color
+    @photo.category = final_tag
+
     if @photo.save
       flash[:notice] = 'Photo was successfully uploaded.'
-      #picUrl = "localhost:3000" + @photo.image.url
-      #print picUrl
-      #tag_response = ClarifaiRuby::TagRequest.new.get(picUrl)
-      #print tag_response.tag_images
       redirect_to action: "index"
-     else
+    else
        render action: 'new'
     end
   end
@@ -59,6 +106,6 @@ class PhotosController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def photo_params
-    params.require(:photo).permit(:image, :user_id, :color, :category)
+    params.require(:photo).permit(:image, :user_id)
   end
 end
