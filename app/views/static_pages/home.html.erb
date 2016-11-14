@@ -1,60 +1,26 @@
 
 <% if user_signed_in? %>
-<header class="intro">
+
+<header class="intro">  
     <div class = "container">
         <div class="row">
-            <h1>Outfit Recommendations</h1>
-            <form>
-                <div class="form-group">
-                  <label for="exampleSelect1">Style Selection</label>
-                  <select class="form-control" id="exampleSelect1">
-                    <option>Formal</option>
-                    <option>Streetwear</option>
-                    <option>Business Casual</option>
-                    <option>Gym</option>
-                    <option>Date Night</option>
-                  </select>
-                </div>
-            </form>
-            <div class = "col-lg-4">
-                <%= image_tag("green_bomber.jpg", :alt => "Browser Mockup", :class => "img-fluid", :size => "500x300") %>
-            </div>
-            <div class = "col-lg-4">
-                <%= image_tag("white-shirt.jpg", :alt => "Browser Mockup", :class => "img-fluid", :size => "500x300") %>
-            </div>
-            <div class = "col-lg-4">
-            <%= image_tag("biege-chinos.jpg", :alt => "Browser Mockup", :class => "img-fluid", :size => "500x300") %>
-            </div>
+            <h1 class = "recommendations">Outfit Recommendations</h1>
         </div>
-        <div class = "row">
-            <h1 class="header-title"> Your Wardrobe </h1>
-        </div>
-        <div class="row">
-            <div class="col-lg-12" style="padding: 1em 0;">
-                <form>
-                  <input type="file" name="pic" accept="image/*">
-                  <input type="submit">
-                </form>
-            </div>
 
-            <% @wardrobe.each do |w| %>
-              <div class="col-lg-4">
-                  <img src="<%= w %>" alt="Picture" class="img-fluid" />
-              </div>
-            <% end %>
-            <div class = "col-lg-4">
-                <%= image_tag("green_bomber.jpg", :alt => "Browser Mockup", :class => "img-fluid", :size => "500x300") %>
-            </div>
-            <div class = "col-lg-4">
-                <%= image_tag("white-shirt.jpg", :alt => "Browser Mockup", :class => "img-fluid", :size => "500x300") %>
-            </div>
-            <div class = "col-lg-4">
-            <%= image_tag("biege-chinos.jpg", :alt => "Browser Mockup", :class => "img-fluid", :size => "500x300") %>
-            </div>
+         <div class="owl-carousel">
+            
+                <% @photos.each_slice(4) do |photo4| %>
+                    <div class="row">
+                        <% photo4.each do |photo| %>
+                            <%=  image_tag photo.image.url(:square) %>
+                        <% end %>
+                    </div>
+                <% end %>
         </div>
     </div>
 </header>
 
+<%= javascript_include_tag('application.js') %>
 <% else %>
 
 <header class="intro">
