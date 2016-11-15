@@ -29,14 +29,14 @@ class PhotosController < ApplicationController
     @photo = Photo.new(photo_params)
 
     #Dummy URL set up for localhost
-    #picUrl = "http://pforf.weebly.com/uploads/4/9/2/9/49298831/s218566430444065912_p8_i4_w900.jpeg"
+    #picUrl = "http://35.163.205.62/system/photos/images/000/000/001/square/plain-blue-shirt-front-and-back-72hi3bcb_%281%29.jpg?1479202484"
     final_color = ""
     final_tag = ""
     if @photo.save == false
       render action: 'new'
     end
 
-    picUrl = request.host + ":"+ request.port.to_s + @photo.image.url(:square)
+    picUrl = "http://" + request.host + @photo.image.url(:square)
     Rails.logger.info "UPLOADED PICTURE URL: "
     Rails.logger.info picUrl
     tag_response = ClarifaiRuby::TagRequest.new.get(picUrl)
