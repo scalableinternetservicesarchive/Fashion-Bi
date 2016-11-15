@@ -29,8 +29,8 @@ class PhotosController < ApplicationController
     @photo = Photo.new(photo_params)
 
     picUrl = @photo.image.url
-    puts "UPLOADED PICTURE URL: "
-    puts picUrl
+    Rails.logger.info "UPLOADED PICTURE URL: "
+    Rails.logger.info picUrl
     #Dummy URL set up for localhost
     #picUrl = "http://pforf.weebly.com/uploads/4/9/2/9/49298831/s218566430444065912_p8_i4_w900.jpeg"
 =begin
