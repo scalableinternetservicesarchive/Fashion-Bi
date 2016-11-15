@@ -36,7 +36,7 @@ class PhotosController < ApplicationController
       render action: 'new'
     end
 
-    picUrl = @photo.image.url(:square)
+    picUrl = request.host + ":"+ request.port.to_s + @photo.image.url(:square)
     Rails.logger.info "UPLOADED PICTURE URL: "
     Rails.logger.info picUrl
     tag_response = ClarifaiRuby::TagRequest.new.get(picUrl)
