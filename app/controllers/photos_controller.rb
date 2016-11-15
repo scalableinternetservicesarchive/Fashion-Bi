@@ -34,14 +34,15 @@ class PhotosController < ApplicationController
 
     #Dummy URL set up for localhost
     #picUrl = "http://pforf.weebly.com/uploads/4/9/2/9/49298831/s218566430444065912_p8_i4_w900.jpeg"
-
+    final_color = ""
+    final_tag = ""
+=begin
     tag_response = ClarifaiRuby::TagRequest.new.get(picUrl)
     tags = tag_response.tag_images.first.tags
     color_response = ClarifaiRuby::ColorRequest.new.get(picUrl)
     colors = color_response.colors
 
     #determine the photo tag
-    final_tag = ""
     tags.each do |tag|
       case tag.word
         when "shirt"
@@ -59,7 +60,6 @@ class PhotosController < ApplicationController
     color_list = ["red", "white", "blue", "green", "black", "brown", "purple", "pink"]
 
     # TODO: Assumes only one color per item
-    final_color = ""
     colors.each do |colorHash|
       shouldBreak = false
       color = colorHash["w3c"]["name"]
@@ -75,7 +75,7 @@ class PhotosController < ApplicationController
       end
     end
     # TODO: Prompt user to retake photo if no color is chosen
-
+=end
     @photo.color = final_color
     @photo.category = final_tag
 
