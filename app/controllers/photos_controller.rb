@@ -33,7 +33,7 @@ class PhotosController < ApplicationController
     puts picUrl
     #Dummy URL set up for localhost
     #picUrl = "http://pforf.weebly.com/uploads/4/9/2/9/49298831/s218566430444065912_p8_i4_w900.jpeg"
-
+=begin
     tag_response = ClarifaiRuby::TagRequest.new.get(picUrl)
     tags = tag_response.tag_images.first.tags
     color_response = ClarifaiRuby::ColorRequest.new.get(picUrl)
@@ -74,7 +74,10 @@ class PhotosController < ApplicationController
       end
     end
     # TODO: Prompt user to retake photo if no color is chosen
+=end
 
+    final_color = "Fake"
+    final_tag = "Fake too"
 
     @photo.color = final_color
     @photo.category = final_tag
