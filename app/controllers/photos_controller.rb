@@ -28,15 +28,17 @@ class PhotosController < ApplicationController
   def create
     @photo = Photo.new(photo_params)
 
-    picUrl = request.host + ":"+ request.port.to_s + @photo.image.url
-    Rails.logger.info "UPLOADED PICTURE URL: "
-    Rails.logger.info picUrl
-
     #Dummy URL set up for localhost
     #picUrl = "http://pforf.weebly.com/uploads/4/9/2/9/49298831/s218566430444065912_p8_i4_w900.jpeg"
     final_color = ""
     final_tag = ""
-=begin
+    if @photo.save == false
+      render action: 'new'
+    end
+
+    picUrl = @photo.image.url(:square)
+    Rails.logger.info "UPLOADED PICTURE URL: "
+    Rails.logger.info picUrl
     tag_response = ClarifaiRuby::TagRequest.new.get(picUrl)
     tags = tag_response.tag_images.first.tags
     color_response = ClarifaiRuby::ColorRequest.new.get(picUrl)
@@ -75,7 +77,7 @@ class PhotosController < ApplicationController
       end
     end
     # TODO: Prompt user to retake photo if no color is chosen
-=end
+
     @photo.color = final_color
     @photo.category = final_tag
 
