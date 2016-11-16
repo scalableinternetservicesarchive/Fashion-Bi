@@ -22,12 +22,26 @@
           <button class="navbar-toggler hidden-md-up pull-right" type="button" data-toggle="collapse" data-target="#collapsingNavbar">
               ☰
           </button>
-          <%= link_to('Fashion.bl', root_path, :class => 'navbar-brand page-scroll') %>
+          <% if user_signed_in? %>
+            <%= link_to('Fashion.bl', feed_path, :class => 'navbar-brand page-scroll') %>
+          <% else %>
+            <%= link_to('Fashion.bl', root_path, :class => 'navbar-brand page-scroll') %>
+          <% end %>
           <div class="collapse navbar-toggleable-sm" id="collapsingNavbar">
               <ul class="nav navbar-nav pull-xs-right">
-                    <% if user_signed_in? %>
+                    <% if current_page?('/') or current_page?('/about') or current_page?('/contact') %>
                       <li class="nav-item">
-                        <a class="nav-link" href="/">Feed</a>
+                        <a href="#" class="nav-link">About</a>
+                      </li>
+                      <li class="nav-item">
+                        <a href="#" class="nav-link">Contact</a>
+                      </li>
+                      <li class="nav-item">
+                        <%= link_to('Login', login_path, :class => cp(new_user_session_path, 'nav-link')) %>
+                      </li>
+                    <% elsif user_signed_in? %>
+                      <li class="nav-item">
+                        <%= link_to('Feed', feed_path, :class => cp(photos_path, 'nav-link')) %>
                       </li>
                       <li class="nav-item">
                         <%= link_to('Wardrobe', photos_path, :class => cp(photos_path, 'nav-link')) %>
@@ -35,7 +49,6 @@
                       <li class="nav-item">
                         <%= link_to('Logout', destroy_user_session_path, :method => :delete, :class => cp(destroy_user_session_path, 'nav-link')) %>
                       </li>
-
                     <% else %>
                       <li class="nav-item">
                         <a href="#" class="nav-link">About</a>
