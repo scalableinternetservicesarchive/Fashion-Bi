@@ -55,3 +55,6 @@ gem 'devise'
 gem 'paperclip'
 gem 'aws-sdk', '~> 2.3'
 gem 'clarifai_ruby'
+
+# Owl Carousel for carousel
+gem 'owlcarousel-rails'

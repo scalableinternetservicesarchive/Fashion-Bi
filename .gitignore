@@ -42,3 +42,7 @@ bower.json
 
 # Ignore Byebug command history file.
 .byebug_history
+
+#AWS credentials
+Fashion-Bi.pem
+Fashion-Bi.txt
