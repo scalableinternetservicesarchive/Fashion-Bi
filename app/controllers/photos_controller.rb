@@ -65,20 +65,22 @@ class PhotosController < ApplicationController
       # TODO: Prompt user to retake photo if no tag is chosen
 
       color_list = ["red", "white", "blue", "green", "black", "brown", "purple", "pink"]
+      maxDensity = 0
+      maxDensityColor = ""
+
+      colors.each do |colorHash|
+        currDensity = colorHash["density"]
+        if maxDensity < currDensity
+          maxDensity = currDensity
+          maxDensityColor = colorHash["w3c"]["name"]
+        end
+      end
 
       # TODO: Assumes only one color per item
-      colors.each do |colorHash|
-        shouldBreak = false
-        color = colorHash["w3c"]["name"]
-        color_list.each do |golden_color|
-          if color.downcase.include? golden_color
-            final_color = golden_color
-            shouldBreak = true
-            break
-          end
-        end
-        if shouldBreak
-            break
+      color_list.each do |goldenColor|
+        if maxDensityColor.downcase.include? goldenColor
+          final_color = goldenColor
+          break
         end
       end
     end
