@@ -36,43 +36,46 @@ class PhotosController < ApplicationController
       render action: 'new'
     end
 
-    picUrl = "http://" + request.host + @photo.image.url(:square)
-    Rails.logger.info "UPLOADED PICTURE URL: "
-    Rails.logger.info picUrl
-    tag_response = ClarifaiRuby::TagRequest.new.get(picUrl)
-    tags = tag_response.tag_images.first.tags
-    color_response = ClarifaiRuby::ColorRequest.new.get(picUrl)
-    colors = color_response.colors
+    if request.host != "localhost"
 
-    #determine the photo tag
-    tags.each do |tag|
-      case tag.word
-        when "shirt"
-          final_tag = "shirt"
-        when "pants"
-          final_tag = "pants"
-        when "jacket"
-          final_tag = "jacket"
-        when "shoes"
-          final_tag = "shoes"
+      picUrl = "http://" + request.host + @photo.image.url(:square)
+      Rails.logger.info "UPLOADED PICTURE URL: "
+      Rails.logger.info picUrl
+      tag_response = ClarifaiRuby::TagRequest.new.get(picUrl)
+      tags = tag_response.tag_images.first.tags
+      color_response = ClarifaiRuby::ColorRequest.new.get(picUrl)
+      colors = color_response.colors
+
+      #determine the photo tag
+      tags.each do |tag|
+        case tag.word
+          when "shirt"
+            final_tag = "shirt"
+          when "pants"
+            final_tag = "pants"
+          when "jacket"
+            final_tag = "jacket"
+          when "shoes"
+            final_tag = "shoes"
+        end
       end
-    end
-    # TODO: Prompt user to retake photo if no tag is chosen
+      # TODO: Prompt user to retake photo if no tag is chosen
 
-    color_list = ["red", "white", "blue", "green", "black", "brown", "purple", "pink"]
+      color_list = ["red", "white", "blue", "green", "black", "brown", "purple", "pink"]
 
-    # TODO: Assumes only one color per item
-    colors.each do |colorHash|
-      shouldBreak = false
-      color = colorHash["w3c"]["name"]
-      color_list.each do |golden_color|
-        if color.downcase.include? golden_color
-          final_color = golden_color
-          shouldBreak = true
-          break
+      # TODO: Assumes only one color per item
+      colors.each do |colorHash|
+        shouldBreak = false
+        color = colorHash["w3c"]["name"]
+        color_list.each do |golden_color|
+          if color.downcase.include? golden_color
+            final_color = golden_color
+            shouldBreak = true
+            break
+          end
         end
         if shouldBreak
-          break
+            break
         end
       end
     end
