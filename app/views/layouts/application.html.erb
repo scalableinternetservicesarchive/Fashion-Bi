@@ -41,7 +41,7 @@
                       </li>
                     <% elsif user_signed_in? %>
                       <li class="nav-item">
-                        <%= link_to('Feed', feed_path, :class => cp(photos_path, 'nav-link')) %>
+                        <%= link_to('Feed', feed_path, :class => cp(feed_path, 'nav-link')) %>
                       </li>
                       <li class="nav-item">
                         <%= link_to('Wardrobe', photos_path, :class => cp(photos_path, 'nav-link')) %>

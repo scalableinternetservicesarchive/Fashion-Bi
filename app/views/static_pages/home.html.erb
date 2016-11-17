@@ -1,28 +1,3 @@
-
-<% if user_signed_in? %>
-
-<header class="intro">  
-    <div class = "container">
-        <div class="row">
-            <h1 class = "recommendations">Outfit Recommendations</h1>
-        </div>
-
-         <div class="owl-carousel">
-            
-                <% @photos.each_slice(4) do |photo4| %>
-                    <div class="row">
-                        <% photo4.each do |photo| %>
-                            <%=  image_tag photo.image.url(:square) %>
-                        <% end %>
-                    </div>
-                <% end %>
-        </div>
-    </div>
-</header>
-
-<%= javascript_include_tag('application.js') %>
-<% else %>
-
 <header class="intro">
     <div class="header-content">
         <div class="inner">
@@ -54,7 +29,3 @@
         </div>
     </div>
 </section>
-
-<% end %>
-
- <%= yield %>
