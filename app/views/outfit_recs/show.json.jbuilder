@@ -1,0 +1,1 @@
+json.partial! "outfit_recs/outfit_rec", outfit_rec: @outfit_rec

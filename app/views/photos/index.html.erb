@@ -1,34 +1,36 @@
-<p id="notice"><%= notice %></p>
+<% if user_signed_in? %>
+  <p id="notice"><%= notice %></p>
 
-<h1>Photos</h1>
+  <h1>Photos</h1>
 
-<table class = "table table-bordered table-striped">
-   <thead>.
-      <tr>
-         <th>Name</th>
-         <th>Category</th>
-         <th>Color</th>
-         <th>Picture</th>
-         <th>Delete</th>
-      </tr>
-   </thead>
-   
-   <tbody>
-      <% @photos.each do |photo| %>
-         
-         <tr>
-            <td><%= photo.user_id %></td>
-            <td><%= photo.category %></td>
-            <td><%= photo.color %></td>
-            <td><%= image_tag photo.image.url(:square) %></td>
-            <td>
-              <%= button_to "Delete",  photo, method: :delete, class: "btn btn-danger", confirm: "Are you sure that you wish to delete this photo?" %>
-            </td>
-         </tr>
-         
-      <% end %>
-   </tbody>
-   
-</table>
+  <table class = "table table-bordered table-striped">
+     <thead>.
+        <tr>
+           <th>Category</th>
+           <th>Color</th>
+           <th>Picture</th>
+           <th>Action</th>
+        </tr>
+     </thead>
+     
+     <tbody>
+        <% @photos.each do |photo| %>
+           
+           <tr>
+              <td><%= photo.category %></td>
+              <td><%= photo.color %></td>
+              <td><%= image_tag photo.image.url(:square) %></td>
+              <td>
+                <%= button_to "Delete",  photo, method: :delete, class: "btn btn-danger", confirm: "Are you sure that you wish to delete this photo?" %>
+              </td>
+           </tr>
+           
+        <% end %>
+     </tbody>
+     
+  </table>
 
-<%= link_to 'New Photo', new_photo_path %>
+  <%= link_to 'New Photo', new_photo_path %>
+
+<% end %>
+<%= yield %>
