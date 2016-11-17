@@ -46,6 +46,9 @@ class PhotosController < ApplicationController
       color_response = ClarifaiRuby::ColorRequest.new.get(picUrl)
       colors = color_response.colors
 
+      Rails.logger.info colors
+      Rails.logger.info tags
+
       #determine the photo tag
       tags.each do |tag|
         case tag.word
