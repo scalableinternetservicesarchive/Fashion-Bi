@@ -1,4 +1,6 @@
 class StaticPagesController < ApplicationController
+
+  # home page
   def home
     @wardrobe = [
       'https://i.imgur.com/DMR2S90.jpg',
@@ -7,7 +9,16 @@ class StaticPagesController < ApplicationController
     @photos = Photo.where(user_id:'whatever')
   end
 
-
+  # old fb login page
   def login
   end
+
+  # user home page
+  def feed
+  end
+
+  # user wardrobe
+  def wardrobe
+  end
+
 end
