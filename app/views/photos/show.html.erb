@@ -1,24 +1,29 @@
-<p id="notice"><%= notice %></p>
+<% if user_signed_in? %>
 
-<p>
-  <strong>User:</strong>
-  <%= @photo.user_id %>
-</p>
+	<p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Category:</strong>
-  <%= @photo.category %>
-</p>
+	<p>
+	  <strong>User:</strong>
+	  <%= @photo.user_id %>
+	</p>
 
-<p>
-  <strong>Color:</strong>
-  <%= @photo.color %>
-</p>
+	<p>
+	  <strong>Category:</strong>
+	  <%= @photo.category %>
+	</p>
 
-<p>
-  <strong>Pic:</strong>
-  <td><%= image_tag @photo.image.url(:square) %></td>
-</p>
+	<p>
+	  <strong>Color:</strong>
+	  <%= @photo.color %>
+	</p>
 
-<%= link_to 'Edit', edit_photo_path(@photo) %> |
-<%= link_to 'Back', photos_path %>
+	<p>
+	  <strong>Pic:</strong>
+	  <td><%= image_tag @photo.image.url(:square) %></td>
+	</p>
+
+	<%= link_to 'Edit', edit_photo_path(@photo) %> |
+	<%= link_to 'Back', photos_path %>
+
+<% end %>
+<%= yield %>

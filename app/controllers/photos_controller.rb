@@ -1,17 +1,16 @@
 class PhotosController < ApplicationController
   before_action :set_photo, only: [:show, :edit, :update, :destroy]
+  before_filter :authenticate_user!
 
   # GET /photos
   # GET /photos.json
   def index
-    @photos = Photo.all
+    @photos = Photo.where(user_id: current_user.email)
   end
 
   # GET /photos/1
   # GET /photos/1.json
   def show
-    @photo = Photo.where(user_id: 'aa').first
-    #print photo_params
   end
 
   # GET /photos/new
@@ -32,6 +31,7 @@ class PhotosController < ApplicationController
     #picUrl = "http://35.163.205.62/system/photos/images/000/000/001/square/plain-blue-shirt-front-and-back-72hi3bcb_%281%29.jpg?1479202484"
     final_color = ""
     final_tag = ""
+    @photo.user_id = current_user.email
     if @photo.save == false
       render action: 'new'
     end
@@ -113,6 +113,6 @@ class PhotosController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def photo_params
-    params.require(:photo).permit(:image, :user_id)
+    params.require(:photo).permit(:image)
   end
 end
