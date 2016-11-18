@@ -1,36 +1,41 @@
 <% if user_signed_in? %>
   <p id="notice"><%= notice %></p>
 
-  <h1>Photos</h1>
+<div class = "wardrobe-container">
+   <h1>Photos</h1>
 
-  <table class = "table table-bordered table-striped">
-     <thead>.
-        <tr>
-           <th>Category</th>
-           <th>Color</th>
-           <th>Picture</th>
-           <th>Action</th>
-        </tr>
-     </thead>
-     
-     <tbody>
-        <% @photos.each do |photo| %>
-           
-           <tr>
-              <td><%= photo.category %></td>
-              <td><%= photo.color %></td>
-              <td><%= image_tag photo.image.url(:square) %></td>
-              <td>
-                <%= button_to "Delete",  photo, method: :delete, class: "btn btn-danger", confirm: "Are you sure that you wish to delete this photo?" %>
-              </td>
-           </tr>
-           
-        <% end %>
-     </tbody>
-     
-  </table>
+   <table class = "table table-bordered table-striped">
+      <thead>
+         <tr>
+            <th>Category</th>
+            <th>Color</th>
+            <th>Picture</th>
+            <th>Options</th>
+         </tr>
+      </thead>
+      
+      <tbody>
+         <% @photos.each do |photo| %>
+            
+            <tr>
+               <td><%= photo.category %></td>
+               <td><%= photo.color %></td>
+               <td><%= image_tag photo.image.url(:square) %></td>
+               <td>
+                 <%= button_to "Delete", photo, method: :delete, class: "btn btn-danger", confirm: "Are you sure that you wish to delete this photo?" %>
+                 <%= button_to "Edit", photo, method: :patch,  class: "btn btn-edit" %>
+               </td>
+            </tr>
+            
+         <% end %>
+      </tbody>
+      
+   </table>
 
-  <%= link_to 'New Photo', new_photo_path %>
+   <%= link_to 'New Photo', new_photo_path %>
+
+</div>
 
 <% end %>
 <%= yield %>
+

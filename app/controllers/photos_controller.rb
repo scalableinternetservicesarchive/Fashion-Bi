@@ -100,6 +100,10 @@ class PhotosController < ApplicationController
   # PATCH/PUT /photos/1
   # PATCH/PUT /photos/1.json
   def update
+    @photo = Photo.find(params[:id])
+    #@photo.destroy
+    flash[:notice] = "The photo has been edited."
+    redirect_to action: "index"
   end
 
   # DELETE /photos/1
