@@ -4,6 +4,7 @@ class OutfitRecsController < ApplicationController
   # GET /outfit_recs
   # GET /outfit_recs.json
   def index
+    @photos = Photo.where(user_id: current_user.email)
     @outfit_recs = OutfitRec.all
   end
 
