@@ -10,6 +10,7 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.4/css/bootstrap.min.css" integrity="sha384-2hfp1SzUoho7/TsGGGDaFdsuuDL0LX2hnUp6VkX3CUQ2K4K+xjboZdsXyp4oUHZj" crossorigin="anonymous">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
 
     <!-- Website Styles -->
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
@@ -37,7 +38,7 @@
                         <a href="#" class="nav-link">Contact</a>
                       </li>
                       <li class="nav-item">
-                        <%= link_to('Login', login_path, :class => cp(new_user_session_path, 'nav-link')) %>
+                        <%= link_to('Login', new_user_session_path, :class => cp(new_user_session_path, 'nav-link')) %>
                       </li>
                     <% elsif user_signed_in? %>
                       <li class="nav-item">
@@ -57,7 +58,7 @@
                         <a href="#" class="nav-link">Contact</a>
                       </li>
                       <li class="nav-item">
-                        <%= link_to('Login', login_path, :class => cp(new_user_session_path, 'nav-link')) %>
+                        <%= link_to('Login', new_user_session_path, :class => cp(new_user_session_path, 'nav-link')) %>
                       </li>
                     <% end %>
               </ul>
@@ -71,7 +72,7 @@
       <div class="container">
         <div class="row">
           <div class="col-xs-12">
-            <p class="text-xs-center">
+            <p class="text-xs-center footer-text">
               Footer goes here.
             </p>
           </div>

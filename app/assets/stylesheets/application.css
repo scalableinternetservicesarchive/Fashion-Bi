@@ -31,12 +31,20 @@ body {
     color: #18171f;
     webkit-tap-highlight-color: #222;
     top: 0;
-    background-color: #fafafa;
+    background-color: #e9ebee;
 }
 
 section {
-    min-height: 600px;
+    min-height: calc(100% - 120px);
     padding: 100px 0;
+}
+
+footer {
+    background-color: #fff;
+}
+
+p.footer-text {
+    margin: .75rem 0;
 }
 
  header {
@@ -155,6 +163,89 @@ header .header-content {
 
 .navbar-default .nav > li>a.active {
     color: #0275d8;
+}
+
+.title {
+    max-width: 60%;
+    margin: 0 auto 2rem auto;
+}
+
+.title h1 {
+    margin-bottom: .5em;
+    text-transform: uppercase;
+    font-size: 2rem;
+    font-weight: 700;
+}
+
+.shadow {
+    -webkit-box-shadow: 0px 1px 1px 0px rgba(0,0,102,0.2);
+    -moz-box-shadow: 0px 1px 1px 0px rgba(0,0,102,0.2);
+    box-shadow: 0px 1px 1px 0px rgba(0,0,102,0.1);
+}
+
+.item {
+    margin: 30px;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    display: inline-block;
+    width: 300px;
+}
+
+.item-img {
+    width: 100%;
+    border-radius: 8px;
+}
+
+.item-img.top {
+    margin-bottom: 15px;
+}
+
+.actionbar {
+    margin-top: 15px;
+}
+
+.heart-icon {
+    margin-right: 15px;
+    /*color: #799999;*/
+}
+
+.x-icon {
+    margin-left: 15px;
+    font-size: 1.3em;
+    color: #F47C7C;
+}
+
+.x-icon:hover {
+    color: #F23557;
+}
+
+.btn-margin {
+    margin-bottom: .5rem;
+}
+
+table {
+    background-color: #fff;
+}
+
+th {
+    font-weight: 400;
+}
+
+.thead-inverse th {
+    background-color: #0275d8;
+}
+
+@media(max-width: 34em) {
+    .item {
+        margin: 20px auto;
+    }
+}
+
+@media(max-width: 48em) {
+    .title {
+        max-width: 90%;
+    }
 }
 
 @media (min-width: 34em) {

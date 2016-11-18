@@ -1,20 +1,37 @@
-<% if user_signed_in? %>
 
-	<h1>New Photo</h1>
+<section>
+	<div class="container text-xs-center">
+		<div class="row">
+			 <div class="col-xs-12">
+					 <div class="title">
+							 	<h1>New Photo</h1>
+					 </div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-6 offset-md-3">
+				<%= render 'form', photo: @photo %>
 
-	<%= render 'form', photo: @photo %>
+				<%= form_for @photo, html: {multipart: true} do |f| %>
+					<div class="form-group">
+						<div class="fileupload fileupload-new" data-provides="fileupload">
+							<span class="btn btn-file btn-link"><span class="fileupload-new">Select file</span>
+							<span class="fileupload-exists">Change</span>
+								<%= f.file_field :image, :required => true %>
+							</span>
+							<span class="fileupload-preview"></span>
+							<a href="#" class="close fileupload-exists" data-dismiss="fileupload" style="float: none">×</a>
+						</div>
+					</div>
+					<div class="actions">
+						<%= f.submit 'Submit', :class => 'btn btn-primary btn-margin' %>
+					</div>
+				<% end %>
 
-	<%= form_for @photo, html: {multipart: true} do |f| %>
-	  <div class="field">
-	    <%= f.label :image %>
-	    <%= f.file_field :image, :required => true%>
-	  </div>
-	  <div class="actions">
-	    <%= f.submit 'Submit Photo' %>
-	  </div>
-	<% end %>
+				<%= link_to 'Back', photos_path %>
+			</div>
+		</div>
+	</div>
+</section>
 
-	<%= link_to 'Back', photos_path %>
-
-<% end %>
 <%= yield %>

@@ -58,3 +58,6 @@ gem 'clarifai_ruby'
 
 # Owl Carousel for carousel
 gem 'owlcarousel-rails'
+
+# Geolocation for weather
+gem 'geocoder'

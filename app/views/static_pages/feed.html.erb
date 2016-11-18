@@ -1,20 +1,57 @@
-<div class="container text-xs-center">
-    <div class="row">
-        <h1 class="recommendations">Outfit Recommendations</h1>
-    </div>
-    <div class="row">
-        <div class="offset-lg-2 col-lg-8">
-            <div class="owl-carousel">
-                   <% @photos.each_slice(4) do |photo4| %>
-                       <div class="row">
-                           <% photo4.each do |photo| %>
-                               <%=  image_tag photo.image.url(:square) %>
-                           <% end %>
-                       </div>
-                   <% end %>
-           </div>
+<section>
+    <div class="container text-xs-center">
+        <div class="row">
+          <div class="col-xs-12">
+              <div class="title">
+                  <h1>Our Recommended Outfits</h1>
+                  <p>
+                      Each outfit below has been selected by our algorithms to fit your needs.
+                  </p>
+              </div>
+          </div>
         </div>
+        <div class="row">
+            <% @photos.each_slice(2) do |photo2| %>
+                <div class="item shadow">
+                    <div class="outfits">
+                        <%= image_tag(photo2[0].image.url(:square), :class => "item-img top") %>
+                        <%= image_tag(photo2[1].image.url(:square), :class => "item-img") %>
+                    </div>
+                    <div class="actionbar">
+                        <a class="heart-icon" href="#"><i class="fa fa-heart fa-lg" aria-hidden="true"></i></a>
+                        <a class="x-icon" href="#"><i class="fa fa-times fa-lg" aria-hidden="true"></i></a>
+                    </div>
+                </div>
+            <% end %>
+            <div class="item shadow">
+                <div class="outfits">
+                    <img class="item-img top" src="https://placekitten.com/g/500/500" alt="Top" />
+                    <img class="item-img" src="https://placekitten.com/g/500/500" alt="Top" />
+                </div>
+                <div class="actionbar">
+                    <a class="heart-icon" href="#"><i class="fa fa-heart fa-lg" aria-hidden="true"></i></a>
+                    <a class="x-icon" href="#"><i class="fa fa-times fa-lg" aria-hidden="true"></i></a>
+                </div>
+            </div>
+        </div>
+        <!-- <div class="row">
+            <div class="recommended-container">
+                <img class="recommended-img" src="https://placekitten.com/g/500/500" alt="Top" />
+                <img class="recommended-img" src="https://placekitten.com/g/500/500" alt="Bottom" />
+            </div>
+            <div class="offset-lg-2 col-lg-8">
+                <div class="owl-carousel">
+                       <% @photos.each_slice(4) do |photo4| %>
+                           <div class="row">
+                               <% photo4.each do |photo| %>
+                                   <%=  image_tag photo.image.url(:square) %>
+                               <% end %>
+                           </div>
+                       <% end %>
+               </div>
+            </div>
+        </div> -->
     </div>
-</div>
+</section>
 
 <%= javascript_include_tag('application.js') %>
