@@ -20,6 +20,9 @@ class PhotosController < ApplicationController
 
   # GET /photos/1/edit
   def edit
+    puts "Edit params"
+    puts params.inspect
+    @photo = Photo.find(params["id"])
   end
 
   # POST /photos

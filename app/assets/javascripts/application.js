@@ -17,12 +17,6 @@
 
 //= require owl.carousel
 
-
-$(document).ready(function() {
-	$(".btn-edit").remove();
-
-});
-
 $(".owl-carousel").owlCarousel({
 
     autoPlay: 3000, //Set AutoPlay to 3 seconds

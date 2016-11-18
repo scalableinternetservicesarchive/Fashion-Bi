@@ -33,7 +33,7 @@
                      <td><%= image_tag photo.image.url(:square) %></td>
                      <td>
                        <%= button_to "Delete", photo, method: :delete, class: "btn btn-danger", confirm: "Are you sure that you wish to delete this photo?" %>
-                       <%= button_to "Edit", photo, method: :patch,  class: "btn btn-edit" %>
+                       <%= button_to "Edit", "/photos/" + photo.id.to_s + "/edit", method: :get,  class: "btn btn-edit" %>
                      </td>
                   </tr>
 
