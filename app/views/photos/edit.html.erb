@@ -1,12 +1,33 @@
 <% if user_signed_in? %>
 
 
-	<h1>Editing Photo</h1>
+  <h1>Editing Photo</h1>
 
-	<%= render 'form', photo: @photo %>
+  <%= form_for @photo, :url => { :action => :update } do |f| %>
 
-	<%= link_to 'Show', @photo %> |
-	<%= link_to 'Back', photos_path %>
+      <%= f.label :category %>
+      <%= f.select :category,
+        [
+          ["Shirt", "shirt"], ["Pants", "pants"],
+          ["Jacket", "jacket"], ["Shoes", "shoes"]
+        ]
+      %>
+
+      <%= f.label :color %>
+      <%= f.select :color, 
+        [
+          ['Blue', 'blue'], ['Black', 'black'],
+          ['Yellow', 'yellow'], ['Green', 'green'], ['Purple', 'purple'],
+          ['White', 'white'], ['Brown', 'brown'], ['Red', 'red'], ['Pink', 'pink']
+        ]
+      %>
+
+      <%= image_tag @photo.image.url(:square) %>
+
+      <%= f.submit "Save changes"%>
+    <% end %>
+
+  <%= link_to 'Back', photos_path %>
 
 <% end %>
 <%= yield %>

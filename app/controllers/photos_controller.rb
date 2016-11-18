@@ -20,8 +20,6 @@ class PhotosController < ApplicationController
 
   # GET /photos/1/edit
   def edit
-    puts "Edit params"
-    puts params.inspect
     @photo = Photo.find(params["id"])
   end
 
@@ -104,9 +102,15 @@ class PhotosController < ApplicationController
   # PATCH/PUT /photos/1.json
   def update
     @photo = Photo.find(params[:id])
-    #@photo.destroy
-    flash[:notice] = "The photo has been edited."
-    redirect_to action: "index"
+    @photo.category = params[:photo][:category]
+    @photo.color = params[:photo][:color]
+    if @photo.save
+      flash[:notice] = "The photo has been edited successfully."
+      redirect_to action: "index"
+    else
+      flash[:notice] = "Failed to edit photo."
+      redirect_to action: 'index'
+    end
   end
 
   # DELETE /photos/1
