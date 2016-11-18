@@ -51,6 +51,9 @@ class PhotosController < ApplicationController
       Rails.logger.info tags
 
       #determine the photo tag
+      #######
+      # IF YOU ADD MORE TAGS HERE, ADD MORE TAGS TO EDIT.HTML
+      #######
       tags.each do |tag|
         case tag.word
           when "shirt"
@@ -65,6 +68,9 @@ class PhotosController < ApplicationController
       end
       # TODO: Prompt user to retake photo if no tag is chosen
 
+      #######
+      # IF YOU ADD MORE COLORS HERE, ADD MORE COLORS TO EDIT.HTML
+      #######
       color_list = ["red", "white", "blue", "green", "black", "brown", "purple", "pink"]
       maxDensity = 0
       maxDensityColor = ""
