@@ -16,7 +16,13 @@
 //= require_tree 
 
 //= require owl.carousel 
- 
+
+
+$(document).ready(function() {
+	$(".btn-edit").remove();
+	
+});
+
 $(".owl-carousel").owlCarousel({
 
     autoPlay: 3000, //Set AutoPlay to 3 seconds
@@ -26,6 +32,4 @@ $(".owl-carousel").owlCarousel({
     itemsDesktopSmall : [979,3],
     lazyLoad : true,
     scrollPerPage : true
-
-
 });
