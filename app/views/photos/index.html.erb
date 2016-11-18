@@ -1,4 +1,5 @@
-<p id="notice"><%= notice %></p>
+<% if user_signed_in? %>
+  <p id="notice"><%= notice %></p>
 
 <div class = "wardrobe-container">
    <h1>Photos</h1>
@@ -34,3 +35,7 @@
    <%= link_to 'New Photo', new_photo_path %>
 
 </div>
+
+<% end %>
+<%= yield %>
+

@@ -144,9 +144,17 @@ header .header-content {
     margin-top: 1em;
 }
 
+.login-title {
+    margin-bottom: 1em;
+}
+
 .btn-login {
     width: 100%;
     margin-bottom: 1em;
+}
+
+.navbar-default .nav > li>a.active {
+    color: #0275d8;
 }
 
 @media (min-width: 34em) {

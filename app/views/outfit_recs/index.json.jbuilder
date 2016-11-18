@@ -1,0 +1,1 @@
+json.array! @outfit_recs, partial: 'outfit_recs/outfit_rec', as: :outfit_rec

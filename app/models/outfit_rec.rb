@@ -1,0 +1,2 @@
+class OutfitRec < ApplicationRecord
+end

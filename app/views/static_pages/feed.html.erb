@@ -1,0 +1,20 @@
+<div class="container text-xs-center">
+    <div class="row">
+        <h1 class="recommendations">Outfit Recommendations</h1>
+    </div>
+    <div class="row">
+        <div class="offset-lg-2 col-lg-8">
+            <div class="owl-carousel">
+                   <% @photos.each_slice(4) do |photo4| %>
+                       <div class="row">
+                           <% photo4.each do |photo| %>
+                               <%=  image_tag photo.image.url(:square) %>
+                           <% end %>
+                       </div>
+                   <% end %>
+           </div>
+        </div>
+    </div>
+</div>
+
+<%= javascript_include_tag('application.js') %>
