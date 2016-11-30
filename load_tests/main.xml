@@ -9,14 +9,15 @@
 
   <!-- Server side setup IP tbd, need to wait until we deploy -->
   <servers>
-    <server host="ec2-54-148-61-114.us-west-2.compute.amazonaws.com" port="80" type="tcp"></server>
+    <server host="35.161.182.252" port="80" type="tcp"></server>
   </servers>
 
 
   <load>
-    <arrivalphase phase="1" duration="30" unit="second">
+    <arrivalphase phase="1" duration="5" unit="second">
       <users arrivalrate="1" unit="second"></users>
     </arrivalphase>
+      <!--
     <arrivalphase phase="2" duration="30" unit="second">
       <users arrivalrate="2" unit="second"></users>
     </arrivalphase>
@@ -26,7 +27,7 @@
    <arrivalphase phase="4" duration="30" unit="second">
      <users arrivalrate="8" unit="second"></users>
    </arrivalphase>
-  <!--
+
    <arrivalphase phase="5" duration="30" unit="second">
      <users arrivalrate="16" unit="second"></users>
    </arrivalphase>
@@ -68,37 +69,51 @@
       </request>
 
       <!-- wait for up to 2 seconds, user is going to sign up -->
-      <thinktime value="2" random="true"></thinktime>\
+      <thinktime value="2" random="true"></thinktime>
+
+      <request>
+        <http url='/register' version='1.1' method='GET'></http>
+      </request>
+
+      <thinktime value="2" random="true"></thinktime>
 
       <!-- Make a random email to set as a user account-->
       <setdynvars sourcetype="random_number" start="1000" end="9999999">
           <var name="random_user_name" />
       </setdynvars>
 
+
       <!-- User account creation -->
       <request subst="true">
           <http
-              url="/register"
+              url="/"
               version="1.1"
               method="POST"
-              contents="user%5Bemail%5D=%%random_user_name%%%40gmail.com
-              &amp;user%5Bpassword%5D=password
-              &amp;user%5Bpassword_confirmation%5D=password
-              &amp;commit=Sign+up">
+              contents="user%5Bemail%5D=email_%%_random_user_name%%%40gmail.com&amp;user%5Bpassword%5D=password&amp;user%5Bpassword_confirmation%5D=password&amp;commit=Sign+up">
           </http>
       </request>
 
-      <!-- visit the outfit feed  -->
+      <!-- visit the outfit feed -->
       <request>
         <http url='/feed' version='1.1' method='GET'></http>
       </request>
 
-      <!-- wait for up to 5 seconds, user is looking at outfits -->
-      <thinktime value="5" random="true"></thinktime>
+      <!-- wait for up to 3 seconds, user is looking at outfits -->
+      <thinktime value="3" random="true"></thinktime>
 
       <!--  go to wardrobe to check closet -->
+      <request>
+        <http url='/photos' version='1.1' method='GET'></http>
+      </request>
+
 
       <!--  add more items to wardrobe -->
+      <request>
+        <http url='/photos/new' version='1.1' method='GET'></http>
+      </request>
+
+      <!-- wait for up to 2 seconds, user is filling out form -->
+      <thinktime value="3" random="true"></thinktime>
 
       <!--  go back to feed page to look at oufit recommendations -->
 
