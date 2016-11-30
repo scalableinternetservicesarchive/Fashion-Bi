@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :favorites
   resources :outfit_recs
   resources :photos
 

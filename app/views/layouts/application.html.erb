@@ -46,7 +46,11 @@
                       </li>
                       <li class="nav-item">
                         <%= link_to('Wardrobe', photos_path, :class => cp(photos_path, 'nav-link')) %>
+                        </li>
+                      <li class="nav-item">
+                        <%= link_to('Favorites', favorites_path, :class => cp(favorites_path, 'nav-link')) %>
                       </li>
+
                       <li class="nav-item">
                         <%= link_to('Logout', destroy_user_session_path, :method => :delete, :class => cp(destroy_user_session_path, 'nav-link')) %>
                       </li>
