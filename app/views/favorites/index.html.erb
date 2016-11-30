@@ -12,14 +12,15 @@
   </thead>
 
   <tbody>
-    <% @favorites.each do |favorite| %>
-      <tr>
-        <td><%= favorite.user_id %></td>
-        <td><%= favorite.outfit_id %></td>
-        <td><%= link_to 'Show', favorite %></td>
-        <td><%= link_to 'Edit', edit_favorite_path(favorite) %></td>
-        <td><%= link_to 'Destroy', favorite, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+    <% @photos.each_slice(6) do |photo2| %>
+        <div class="item shadow">
+            <div class="outfits">
+                <%= image_tag(photo2[0].url(:square), :class => "item-img top") %>
+                <%= image_tag(photo2[1].url(:square), :class => "item-img") %>
+                <%= image_tag(photo2[2].url(:square), :class => "item-img") %>
+                <%= image_tag(photo2[3].url(:square), :class => "item-img") %>
+            </div>
+        </div>
     <% end %>
   </tbody>
 </table>
