@@ -32,6 +32,7 @@ class PhotosController < ApplicationController
     #picUrl = "http://35.163.205.62/system/photos/images/000/000/001/square/plain-blue-shirt-front-and-back-72hi3bcb_%281%29.jpg?1479202484"
     final_color = ""
     final_tag = ""
+    style = "casual"
     @photo.user_id = current_user.email
     if @photo.save == false
       render action: 'new'
@@ -65,6 +66,9 @@ class PhotosController < ApplicationController
           when "shoes"
             final_tag = "shoes"
         end
+        if tag.word.include? "formal"
+            style = "formal"
+        end
       end
       # TODO: Prompt user to retake photo if no tag is chosen
 
@@ -95,12 +99,13 @@ class PhotosController < ApplicationController
 
     @photo.color = final_color
     @photo.category = final_tag
+    @photo.style = style
 
     if @photo.save
       flash[:notice] = 'Photo was successfully uploaded.'
       redirect_to action: "index"
     else
-       render action: 'new'
+      render action: 'new'
     end
   end
 
@@ -110,6 +115,7 @@ class PhotosController < ApplicationController
     @photo = Photo.find(params[:id])
     @photo.category = params[:photo][:category]
     @photo.color = params[:photo][:color]
+    @photo.style = params[:style]
     if @photo.save
       flash[:notice] = "The photo has been edited successfully."
       redirect_to action: "index"
@@ -135,6 +141,6 @@ class PhotosController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def photo_params
-    params.require(:photo).permit(:image)
+    params.require(:photo).permit(:image, :style)
   end
 end

@@ -5,24 +5,40 @@
 
   <%= form_for @photo, :url => { :action => :update } do |f| %>
 
-      <%= f.label :category %>
+      <b><%= f.label :category %></b>
       <%= f.select :category,
         [
           ["Shirt", "shirt"], ["Pants", "pants"],
           ["Jacket", "jacket"], ["Shoes", "shoes"]
         ]
-      %>
+        %> <br>
 
-      <%= f.label :color %>
+      <b><%= f.label :color %></b>
       <%= f.select :color, 
         [
           ['Blue', 'blue'], ['Black', 'black'],
           ['Yellow', 'yellow'], ['Green', 'green'], ['Purple', 'purple'],
           ['White', 'white'], ['Brown', 'brown'], ['Red', 'red'], ['Pink', 'pink']
         ]
-      %>
-
+        %> <br>
+      <br>
       <%= image_tag @photo.image.url(:square) %>
+      <br>
+      <br>
+      <b><%= f.label :style %></b>
+      <% if @photo.style == "formal" %>
+            <input type="radio" name="style" value="formal" checked="checked"> Formal
+        <% else %>
+            <input type="radio" name="style" value="formal"> Formal
+        <% end %>
+
+      <% if @photo.style == "casual" %>
+            <input type="radio" name="style" value="casual" checked="checked"> Casual
+        <% else %>
+            <input type="radio" name="style" value="casual"> Casual
+      <% end %>
+
+      <br><br>
 
       <%= f.submit "Save changes"%>
     <% end %>
