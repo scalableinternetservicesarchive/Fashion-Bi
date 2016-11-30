@@ -93,11 +93,6 @@
           </http>
       </request>
 
-      <!-- visit the outfit feed -->
-      <request>
-        <http url='/feed' version='1.1' method='GET'></http>
-      </request>
-
       <!-- wait for up to 3 seconds, user is looking at outfits -->
       <thinktime value="3" random="true"></thinktime>
 
@@ -106,16 +101,82 @@
         <http url='/photos' version='1.1' method='GET'></http>
       </request>
 
-
       <!--  add more items to wardrobe -->
       <request>
         <http url='/photos/new' version='1.1' method='GET'></http>
       </request>
 
       <!-- wait for up to 2 seconds, user is filling out form -->
-      <thinktime value="3" random="true"></thinktime>
+      <thinktime value="2" random="true"></thinktime>
+
+      <!-- Uploading pictures -->
+      <setdynvars sourcetype="eval"
+          code='fun({Pid,DynVars})-> [[13, 10]] end.'>
+          <var name="nl" />
+      </setdynvars>
+
+      <setdynvars sourcetype="eval"
+        code='fun({Pid,DynVars})->
+          {ok, Bin} = file:read_file("denim.jpg"),
+          Bin
+          end.'>
+        <var name="attached_file_1" />
+      </setdynvars>
+
+      <setdynvars sourcetype="eval"
+        code='fun({Pid,DynVars})->
+          {ok, Bin} = file:read_file("tee.jpg"),
+          Bin
+          end.'>
+        <var name="attached_file_2" />
+      </setdynvars>
+
+      <setdynvars sourcetype="random_number" start="1000" end="9999999">
+        <var name="random_submission_name" />
+      </setdynvars>
+
+      <request subst="true">
+          <http
+              url="/photos"
+              version="1.1"
+              method="POST"
+              content_type='multipart/form-data; boundary=----FormBoundary'
+              contents='------FormBoundary%%_nl%%Content-Disposition: form-data; name="photo[image]"; filename="tee%%_random_submission_name%%.jpg"%%_nl%%Content-Type: image/png%%_nl%%%%_nl%%%%_attached_file_2%%%%_nl%%------FormBoundary%%_nl%%Content-Disposition: form-data; name="commit"%%_nl%%%%_nl%%Submit%%_nl%%------FormBoundary--%%_nl%%%%_nl%%'>
+          </http>
+      </request>
+
+      <!--  go to wardrobe to check closet -->
+      <request>
+        <http url='/photos' version='1.1' method='GET'></http>
+      </request>
+
+      <thinktime value="2" random="true"></thinktime>
+
+      <!-- Upload another picture -->
+      <request>
+        <http url='/photos/new' version='1.1' method='GET'></http>
+      </request>
+
+      <!-- wait for up to 2 seconds, user is filling out form -->
+      <thinktime value="2" random="true"></thinktime>
+
+      <request subst="true">
+          <http
+              url="/photos"
+              version="1.1"
+              method="POST"
+              content_type='multipart/form-data; boundary=----FormBoundary'
+              contents='------FormBoundary%%_nl%%Content-Disposition: form-data; name="photo[image]"; filename="denim_%%_random_submission_name%%.jpg"%%_nl%%Content-Type: image/png%%_nl%%%%_nl%%%%_attached_file_1%%%%_nl%%------FormBoundary%%_nl%%Content-Disposition: form-data; name="commit"%%_nl%%%%_nl%%Submit%%_nl%%------FormBoundary--%%_nl%%%%_nl%%'>
+          </http>
+      </request>
+
 
       <!--  go back to feed page to look at oufit recommendations -->
+      <request>
+        <http url='/feed' version='1.1' method='GET'></http>
+      </request>
+
+      <thinktime value="3" random="true"></thinktime>
 
       <!--  favorite some and delete some -->
 
