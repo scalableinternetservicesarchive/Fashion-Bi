@@ -1,3 +1,5 @@
+require 'date'
+
 class OutfitRecsController < ApplicationController
   before_action :set_outfit_rec, only: [:show, :edit, :update, :destroy]
 
@@ -41,7 +43,7 @@ class OutfitRecsController < ApplicationController
 
       @outfit_rec.clothes_ids = @ids
 
-      @outfit_rec.date = "20xx"
+      @outfit_rec.date = DateTime.now
 
       @outfit_recs.push(@outfit_rec)
 
