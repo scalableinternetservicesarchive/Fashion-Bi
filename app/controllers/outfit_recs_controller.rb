@@ -4,8 +4,49 @@ class OutfitRecsController < ApplicationController
   # GET /outfit_recs
   # GET /outfit_recs.json
   def index
-    @photos = Photo.where(user_id: current_user.email)
-    @outfit_recs = OutfitRec.all
+    @shirts = Photo.where("user_id = ? AND category = \'shirt\'", current_user.email).order("RANDOM()")
+    @jackets = Photo.where("user_id = ? AND category = \'jacket\'", current_user.email).order("RANDOM()")
+    @pants = Photo.where("user_id = ? AND category = \'pants\'", current_user.email).order("RANDOM()")
+    @shoes = Photo.where("user_id = ? AND category = \'shoes\'", current_user.email).order("RANDOM()")
+
+    @sz_shirts = @shirts.size
+    @sz_jackets = @jackets.size
+    @sz_pants = @pants.size
+    @sz_shoes = @shoes.size
+
+    @sz_min = @sz_shirts
+    if @sz_min > @sz_jackets
+      @sz_min = @sz_jackets
+    end
+    if @sz_min > @sz_pants
+      @sz_min = @sz_pants
+    end
+    if @sz_min > @sz_shoes
+      @sz_min = @sz_shoes
+    end
+
+    @outfit_recs = Array.new
+
+    @it = 0
+    while @it < @sz_min do
+      @outfit_rec = OutfitRec.new
+
+      @outfit_rec.user_id = current_user.email
+
+      @ids = Array.new
+      @ids.push(@shirts[@it].id)
+      @ids.push(@jackets[@it].id)
+      @ids.push(@pants[@it].id)
+      @ids.push(@shoes[@it].id)
+
+      @outfit_rec.clothes_ids = @ids
+
+      @outfit_rec.date = "20xx"
+
+      @outfit_recs.push(@outfit_rec)
+
+      @it = @it+1
+    end
   end
 
   # GET /outfit_recs/1
