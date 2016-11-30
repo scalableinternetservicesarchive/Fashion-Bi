@@ -11,11 +11,13 @@
           </div>
         </div>
         <div class="row">
-            <% @photos.each_slice(2) do |photo2| %>
+            <% @photos.each_slice(4) do |photo2| %>
                 <div class="item shadow">
                     <div class="outfits">
-                        <%= image_tag(photo2[0].image.url(:square), :class => "item-img top") %>
-                        <%= image_tag(photo2[1].image.url(:square), :class => "item-img") %>
+                        <%= image_tag(photo2[0].url(:square), :class => "item-img top") %>
+                        <%= image_tag(photo2[1].url(:square), :class => "item-img") %>
+                        <%= image_tag(photo2[2].url(:square), :class => "item-img") %>
+                        <%= image_tag(photo2[3].url(:square), :class => "item-img") %>
                     </div>
                     <div class="actionbar">
                         <a class="heart-icon" href="#"><i class="fa fa-heart fa-lg" aria-hidden="true"></i></a>
@@ -44,7 +46,7 @@
                        <% @photos.each_slice(4) do |photo4| %>
                            <div class="row">
                                <% photo4.each do |photo| %>
-                                   <%=  image_tag photo.image.url(:square) %>
+                                   <%=  image_tag photo.url(:square) %>
                                <% end %>
                            </div>
                        <% end %>
