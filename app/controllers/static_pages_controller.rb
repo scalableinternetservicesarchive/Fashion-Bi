@@ -41,20 +41,47 @@ class StaticPagesController < ApplicationController
 
       @it = 0
       while @it < @sz_min do
+        @c_shirt = @shirts.first
+        @shirt_color = @c_shirt.color
+
+        # pant color should be different from shirt color if possible
+        @c_pant = @pants.where("color <> ?", @shirt_color).first
+        if @c_pant.nil?
+          @c_pant = @pants.first
+        end
+        @pant_color = @c_pant.color
+
+        # jacket color should be different from shirt and pant color if possible
+        @c_jacket = @jackets.where("color <> ? AND color <> ?", @shirt_color, @pant_color).first
+        if @c_jacket.nil?
+          @c_jacket = @jackets.first
+        end
+
+        @c_shoes = @shoes.where("color = ?", @shirt_color).first
+        if @c_shoes.nil?
+          @c_shoes = @shoes.first
+        end
+
+        @shirts = @shirts.where("id <> ?", @c_shirt.id)
+        @jackets = @jackets.where("id <> ?", @c_jacket.id)
+        @pants = @pants.where("id <> ?", @c_pant.id)
+        @shoes = @shoes.where("id <> ?", @c_shoes.id)
+
+
         @outfit_rec = OutfitRec.new
 
         @outfit_rec.user_id = current_user.email
 
-        @outfit_rec.clothes_ids = "#{@shirts[@it].id} #{@jackets[@it].id} #{@pants[@it].id} #{@shoes[@it].id}"
+        @outfit_rec.clothes_ids = "#{@c_shirt.id} #{@c_jacket.id} #{@c_pant.id} #{@c_shoes.id}"
 
         @outfit_rec.date = DateTime.now
 
         @outfit_rec.save
 
-        @photos.push(@shirts[@it].image)
-        @photos.push(@jackets[@it].image)
-        @photos.push(@pants[@it].image)
-        @photos.push(@shoes[@it].image)
+        @photos.push(@c_shirt.image)
+        @photos.push(@c_jacket.image)
+        @photos.push(@c_pant.image)
+        @photos.push(@c_shoes.image)
         @photos.push(@outfit_rec.id)
         @photos.push(@outfit_rec.user_id)
 
