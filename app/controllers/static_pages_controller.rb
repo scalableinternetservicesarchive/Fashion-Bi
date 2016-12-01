@@ -113,15 +113,17 @@ class StaticPagesController < ApplicationController
       end
     else
       print "have storec recs; use those"
-      @stored_recs.each do |rec|
-        # rec.delete
-        @c_ids = rec.clothes_ids.split(" ").map { |s| s.to_i }
-        @c_ids.each do |c_id|
-          @c_photo = Photo.where(id: c_id)
-          @photos.push(@c_photo.first.image)
-        end
-        @photos.push(rec.id)
-        @photos.push(rec.user_id)
+      if stale?(@stored_recs, public: true)
+          @stored_recs.each do |rec|
+            # rec.delete
+            @c_ids = rec.clothes_ids.split(" ").map { |s| s.to_i }
+            @c_ids.each do |c_id|
+              @c_photo = Photo.where(id: c_id)
+              @photos.push(@c_photo.first.image)
+            end
+            @photos.push(rec.id)
+            @photos.push(rec.user_id)
+          end
       end
     end
 

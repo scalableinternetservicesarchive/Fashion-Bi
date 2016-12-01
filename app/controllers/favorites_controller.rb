@@ -6,15 +6,17 @@ class FavoritesController < ApplicationController
   # GET /favorites.json
   def index
     @stored_recs = OutfitRec.where("user_id = ? AND outfit_recs.like = ?", current_user.email, 1)
-    @photos = Array.new
-    @stored_recs.each do |rec|
-      @c_ids = rec.clothes_ids.split(" ").map { |s| s.to_i }
-      @c_ids.each do |c_id|
-        @c_photo = Photo.where(id: c_id)
-        @photos.push(@c_photo.first.image)
-      end
-      @photos.push(rec.id)
-      @photos.push(rec.user_id)
+    if stale?(@stored_recs, public: true)
+        @photos = Array.new
+        @stored_recs.each do |rec|
+          @c_ids = rec.clothes_ids.split(" ").map { |s| s.to_i }
+          @c_ids.each do |c_id|
+            @c_photo = Photo.where(id: c_id)
+            @photos.push(@c_photo.first.image)
+          end
+          @photos.push(rec.id)
+          @photos.push(rec.user_id)
+        end
     end
   end
 
