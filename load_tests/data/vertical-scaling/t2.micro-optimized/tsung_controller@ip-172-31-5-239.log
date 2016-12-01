@@ -1,0 +1,325 @@
+
+=INFO REPORT==== 1-Dec-2016::09:35:28 ===
+    ts_config_server:(5:<0.55.0>) Config server started, logdir is "/home/ec2-user/.tsung/log/20161201-0935"
+ 
+=INFO REPORT==== 1-Dec-2016::09:35:28 ===
+              ts_mon:(5:<0.54.0>) starting monitor, global 
+
+=INFO REPORT==== 1-Dec-2016::09:35:28 ===
+           ts_config:(5:<0.55.0>) Reading config file: main.xml
+
+=INFO REPORT==== 1-Dec-2016::09:35:28 ===
+      ts_config_http:(4:<0.55.0>) Get user agent: 100 "Mozilla/5.0 (Windows; U; Windows NT 5.2; fr-FR; rv:1.7.8) Gecko/20050511 Firefox/1.0.4" 
+
+=INFO REPORT==== 1-Dec-2016::09:35:28 ===
+           ts_config:(5:<0.55.0>) Session name for id 1 is "http-example"
+
+=INFO REPORT==== 1-Dec-2016::09:35:28 ===
+    ts_config_server:(4:<0.55.0>) SYSINFO:Tsung version: 1.6.0
+
+=INFO REPORT==== 1-Dec-2016::09:35:28 ===
+    ts_config_server:(4:<0.55.0>) SYSINFO:Erlang version: Erlang R14B04 (erts-5.8.5) [source] [64-bit] [rq:1] [async-threads:8] [kernel-poll:true]
+
+
+=INFO REPORT==== 1-Dec-2016::09:35:28 ===
+    ts_config_server:(4:<0.55.0>) SYSINFO:System architecture x86_64-redhat-linux-gnu
+
+=INFO REPORT==== 1-Dec-2016::09:35:28 ===
+    ts_config_server:(4:<0.55.0>) SYSINFO:Current path: /usr/lib/erlang/lib/tsung-1.6.0/ebin/tsung.beam
+
+=INFO REPORT==== 1-Dec-2016::09:35:29 ===
+              ts_mon:(5:<0.56.0>) Activate clients with text backend
+
+=INFO REPORT==== 1-Dec-2016::09:35:29 ===
+              ts_mon:(5:<0.56.0>) Starting tsung clients on hosts: [localhost]
+
+=INFO REPORT==== 1-Dec-2016::09:35:29 ===
+    ts_config_server:(5:<0.55.0>) Start a launcher on the controller beam localhost
+
+=INFO REPORT==== 1-Dec-2016::09:35:29 ===
+  ts_launcher_static:(5:<0.111.0>) Launch msg receive ("localhost")
+
+=INFO REPORT==== 1-Dec-2016::09:35:29 ===
+         ts_launcher:(5:<0.112.0>) Launch msg receive ("localhost")
+
+=INFO REPORT==== 1-Dec-2016::09:35:29 ===
+    ts_config_server:(5:<0.55.0>) All remote beams started, syncing 
+
+=INFO REPORT==== 1-Dec-2016::09:35:29 ===
+    ts_config_server:(5:<0.55.0>) Undefined ports_range config 
+
+=INFO REPORT==== 1-Dec-2016::09:35:29 ===
+    ts_config_server:(5:<0.55.0>) New arrival phase 1 for client "localhost" (last ? true): will start 30 users
+
+=INFO REPORT==== 1-Dec-2016::09:35:29 ===
+    ts_config_server:(5:<0.55.0>) New arrival phase 2 for client "localhost" (last ? true): will start 60 users
+
+=INFO REPORT==== 1-Dec-2016::09:35:29 ===
+    ts_config_server:(5:<0.55.0>) New arrival phase 3 for client "localhost" (last ? true): will start 120 users
+
+=INFO REPORT==== 1-Dec-2016::09:35:29 ===
+    ts_config_server:(5:<0.55.0>) New arrival phase 4 for client "localhost" (last ? true): will start 240 users
+
+=INFO REPORT==== 1-Dec-2016::09:35:29 ===
+         ts_launcher:(5:<0.112.0>) Expected duration of first phase: 30.0 sec (30 users) 
+
+=INFO REPORT==== 1-Dec-2016::09:35:29 ===
+         ts_launcher:(5:<0.112.0>) Activate launcher (30 users) in 910 msec 
+
+=INFO REPORT==== 1-Dec-2016::09:36:00 ===
+         ts_launcher:(5:<0.112.0>) Phase duration exceeded, but not all users were launched (1 users, 3.3% of phase)
+
+=INFO REPORT==== 1-Dec-2016::09:36:00 ===
+         ts_launcher:(5:<0.112.0>) Start a new arrival phase (60 users, 0.002); expected duration=30.0 sec
+
+=INFO REPORT==== 1-Dec-2016::09:36:30 ===
+         ts_launcher:(5:<0.112.0>) Phase duration exceeded, but not all users were launched (9 users, 15.0% of phase)
+
+=INFO REPORT==== 1-Dec-2016::09:36:30 ===
+         ts_launcher:(5:<0.112.0>) Start a new arrival phase (120 users, 0.004); expected duration=30.0 sec
+
+=INFO REPORT==== 1-Dec-2016::09:36:56 ===
+         ts_launcher:(4:<0.112.0>) Need to wait 3.226 sec before changing phase, going to sleep
+
+=INFO REPORT==== 1-Dec-2016::09:37:00 ===
+         ts_launcher:(5:<0.112.0>) Waking up
+
+=INFO REPORT==== 1-Dec-2016::09:37:00 ===
+         ts_launcher:(5:<0.112.0>) Start a new arrival phase (240 users, 0.008); expected duration=30.0 sec
+
+=INFO REPORT==== 1-Dec-2016::09:37:01 ===
+           ts_client:(5:<0.161.0>) connection close while sending message!
+
+=INFO REPORT==== 1-Dec-2016::09:37:01 ===
+           ts_client:(5:<0.161.0>) Server must have closed connection upon us, waiting 10 msec
+
+=INFO REPORT==== 1-Dec-2016::09:37:01 ===
+           ts_client:(5:<0.195.0>) connection close while sending message!
+
+=INFO REPORT==== 1-Dec-2016::09:37:01 ===
+           ts_client:(5:<0.195.0>) Server must have closed connection upon us, waiting 10 msec
+
+=INFO REPORT==== 1-Dec-2016::09:37:11 ===
+           ts_client:(5:<0.386.0>) connection close while sending message!
+
+=INFO REPORT==== 1-Dec-2016::09:37:11 ===
+           ts_client:(5:<0.386.0>) Server must have closed connection upon us, waiting 10 msec
+
+=INFO REPORT==== 1-Dec-2016::09:37:13 ===
+           ts_client:(5:<0.345.0>) connection close while sending message!
+
+=INFO REPORT==== 1-Dec-2016::09:37:13 ===
+           ts_client:(5:<0.345.0>) Server must have closed connection upon us, waiting 10 msec
+
+=INFO REPORT==== 1-Dec-2016::09:37:13 ===
+           ts_client:(5:<0.406.0>) connection close while sending message!
+
+=INFO REPORT==== 1-Dec-2016::09:37:13 ===
+           ts_client:(5:<0.406.0>) Server must have closed connection upon us, waiting 10 msec
+
+=INFO REPORT==== 1-Dec-2016::09:37:15 ===
+           ts_client:(5:<0.332.0>) connection close while sending message!
+
+=INFO REPORT==== 1-Dec-2016::09:37:15 ===
+           ts_client:(5:<0.332.0>) Server must have closed connection upon us, waiting 10 msec
+
+=INFO REPORT==== 1-Dec-2016::09:37:16 ===
+           ts_client:(5:<0.256.0>) connection close while sending message!
+
+=INFO REPORT==== 1-Dec-2016::09:37:16 ===
+           ts_client:(5:<0.256.0>) Server must have closed connection upon us, waiting 10 msec
+
+=INFO REPORT==== 1-Dec-2016::09:37:16 ===
+           ts_client:(5:<0.383.0>) connection close while sending message!
+
+=INFO REPORT==== 1-Dec-2016::09:37:16 ===
+           ts_client:(5:<0.383.0>) Server must have closed connection upon us, waiting 10 msec
+
+=INFO REPORT==== 1-Dec-2016::09:37:17 ===
+           ts_client:(5:<0.432.0>) connection close while sending message!
+
+=INFO REPORT==== 1-Dec-2016::09:37:17 ===
+           ts_client:(5:<0.432.0>) Server must have closed connection upon us, waiting 10 msec
+
+=INFO REPORT==== 1-Dec-2016::09:37:18 ===
+           ts_client:(5:<0.363.0>) connection close while sending message!
+
+=INFO REPORT==== 1-Dec-2016::09:37:18 ===
+           ts_client:(5:<0.363.0>) Server must have closed connection upon us, waiting 10 msec
+
+=INFO REPORT==== 1-Dec-2016::09:37:18 ===
+           ts_client:(5:<0.187.0>) connection close while sending message!
+
+=INFO REPORT==== 1-Dec-2016::09:37:18 ===
+           ts_client:(5:<0.187.0>) Server must have closed connection upon us, waiting 10 msec
+
+=INFO REPORT==== 1-Dec-2016::09:37:18 ===
+           ts_client:(5:<0.376.0>) connection close while sending message!
+
+=INFO REPORT==== 1-Dec-2016::09:37:18 ===
+           ts_client:(5:<0.376.0>) Server must have closed connection upon us, waiting 10 msec
+
+=INFO REPORT==== 1-Dec-2016::09:37:18 ===
+           ts_client:(5:<0.311.0>) connection close while sending message!
+
+=INFO REPORT==== 1-Dec-2016::09:37:18 ===
+           ts_client:(5:<0.311.0>) Server must have closed connection upon us, waiting 10 msec
+
+=INFO REPORT==== 1-Dec-2016::09:37:18 ===
+           ts_client:(5:<0.425.0>) connection close while sending message!
+
+=INFO REPORT==== 1-Dec-2016::09:37:18 ===
+           ts_client:(5:<0.425.0>) Server must have closed connection upon us, waiting 10 msec
+
+=INFO REPORT==== 1-Dec-2016::09:37:20 ===
+           ts_client:(5:<0.356.0>) connection close while sending message!
+
+=INFO REPORT==== 1-Dec-2016::09:37:20 ===
+           ts_client:(5:<0.356.0>) Server must have closed connection upon us, waiting 10 msec
+
+=INFO REPORT==== 1-Dec-2016::09:37:20 ===
+           ts_client:(5:<0.463.0>) connection close while sending message!
+
+=INFO REPORT==== 1-Dec-2016::09:37:20 ===
+           ts_client:(5:<0.463.0>) Server must have closed connection upon us, waiting 10 msec
+
+=INFO REPORT==== 1-Dec-2016::09:37:21 ===
+           ts_client:(5:<0.329.0>) connection close while sending message!
+
+=INFO REPORT==== 1-Dec-2016::09:37:21 ===
+           ts_client:(5:<0.329.0>) Server must have closed connection upon us, waiting 10 msec
+
+=INFO REPORT==== 1-Dec-2016::09:37:21 ===
+           ts_client:(5:<0.487.0>) connection close while sending message!
+
+=INFO REPORT==== 1-Dec-2016::09:37:21 ===
+           ts_client:(5:<0.487.0>) Server must have closed connection upon us, waiting 10 msec
+
+=INFO REPORT==== 1-Dec-2016::09:37:21 ===
+           ts_client:(5:<0.245.0>) connection close while sending message!
+
+=INFO REPORT==== 1-Dec-2016::09:37:21 ===
+           ts_client:(5:<0.245.0>) Server must have closed connection upon us, waiting 10 msec
+
+=INFO REPORT==== 1-Dec-2016::09:37:21 ===
+           ts_client:(5:<0.411.0>) connection close while sending message!
+
+=INFO REPORT==== 1-Dec-2016::09:37:21 ===
+           ts_client:(5:<0.411.0>) Server must have closed connection upon us, waiting 10 msec
+
+=INFO REPORT==== 1-Dec-2016::09:37:21 ===
+           ts_client:(5:<0.278.0>) connection close while sending message!
+
+=INFO REPORT==== 1-Dec-2016::09:37:21 ===
+           ts_client:(5:<0.278.0>) Server must have closed connection upon us, waiting 10 msec
+
+=INFO REPORT==== 1-Dec-2016::09:37:22 ===
+           ts_client:(5:<0.443.0>) connection close while sending message!
+
+=INFO REPORT==== 1-Dec-2016::09:37:22 ===
+           ts_client:(5:<0.443.0>) Server must have closed connection upon us, waiting 10 msec
+
+=INFO REPORT==== 1-Dec-2016::09:37:22 ===
+           ts_client:(5:<0.278.0>) connection close while sending message!
+
+=INFO REPORT==== 1-Dec-2016::09:37:22 ===
+           ts_client:(5:<0.278.0>) Server must have closed connection upon us, waiting 10 msec
+
+=INFO REPORT==== 1-Dec-2016::09:37:22 ===
+           ts_client:(5:<0.482.0>) connection close while sending message!
+
+=INFO REPORT==== 1-Dec-2016::09:37:22 ===
+           ts_client:(5:<0.482.0>) Server must have closed connection upon us, waiting 10 msec
+
+=INFO REPORT==== 1-Dec-2016::09:37:23 ===
+           ts_client:(5:<0.479.0>) connection close while sending message!
+
+=INFO REPORT==== 1-Dec-2016::09:37:23 ===
+           ts_client:(5:<0.479.0>) Server must have closed connection upon us, waiting 10 msec
+
+=INFO REPORT==== 1-Dec-2016::09:37:24 ===
+           ts_client:(5:<0.385.0>) connection close while sending message!
+
+=INFO REPORT==== 1-Dec-2016::09:37:24 ===
+           ts_client:(5:<0.385.0>) Server must have closed connection upon us, waiting 10 msec
+
+=INFO REPORT==== 1-Dec-2016::09:37:24 ===
+           ts_client:(5:<0.448.0>) connection close while sending message!
+
+=INFO REPORT==== 1-Dec-2016::09:37:24 ===
+           ts_client:(5:<0.448.0>) Server must have closed connection upon us, waiting 10 msec
+
+=INFO REPORT==== 1-Dec-2016::09:37:25 ===
+           ts_client:(5:<0.427.0>) connection close while sending message!
+
+=INFO REPORT==== 1-Dec-2016::09:37:25 ===
+           ts_client:(5:<0.427.0>) Server must have closed connection upon us, waiting 10 msec
+
+=INFO REPORT==== 1-Dec-2016::09:37:26 ===
+           ts_client:(5:<0.241.0>) connection close while sending message!
+
+=INFO REPORT==== 1-Dec-2016::09:37:26 ===
+           ts_client:(5:<0.241.0>) Server must have closed connection upon us, waiting 10 msec
+
+=INFO REPORT==== 1-Dec-2016::09:37:29 ===
+           ts_client:(5:<0.357.0>) connection close while sending message!
+
+=INFO REPORT==== 1-Dec-2016::09:37:29 ===
+           ts_client:(5:<0.357.0>) Server must have closed connection upon us, waiting 10 msec
+
+=INFO REPORT==== 1-Dec-2016::09:37:29 ===
+         ts_launcher:(5:<0.112.0>) This was the last phase, wait for connected users to finish their session
+
+=INFO REPORT==== 1-Dec-2016::09:37:31 ===
+           ts_client:(5:<0.393.0>) connection close while sending message!
+
+=INFO REPORT==== 1-Dec-2016::09:37:31 ===
+           ts_client:(5:<0.393.0>) Server must have closed connection upon us, waiting 10 msec
+
+=INFO REPORT==== 1-Dec-2016::09:37:31 ===
+           ts_client:(5:<0.458.0>) connection close while sending message!
+
+=INFO REPORT==== 1-Dec-2016::09:37:31 ===
+           ts_client:(5:<0.458.0>) Server must have closed connection upon us, waiting 10 msec
+
+=INFO REPORT==== 1-Dec-2016::09:37:31 ===
+           ts_client:(5:<0.350.0>) connection close while sending message!
+
+=INFO REPORT==== 1-Dec-2016::09:37:31 ===
+           ts_client:(5:<0.350.0>) Server must have closed connection upon us, waiting 10 msec
+
+=INFO REPORT==== 1-Dec-2016::09:37:33 ===
+           ts_client:(5:<0.295.0>) connection close while sending message!
+
+=INFO REPORT==== 1-Dec-2016::09:37:33 ===
+           ts_client:(5:<0.295.0>) Server must have closed connection upon us, waiting 10 msec
+
+=INFO REPORT==== 1-Dec-2016::09:37:33 ===
+           ts_client:(5:<0.501.0>) connection close while sending message!
+
+=INFO REPORT==== 1-Dec-2016::09:37:33 ===
+           ts_client:(5:<0.501.0>) Server must have closed connection upon us, waiting 10 msec
+
+=INFO REPORT==== 1-Dec-2016::09:37:37 ===
+           ts_client:(5:<0.450.0>) connection close while sending message!
+
+=INFO REPORT==== 1-Dec-2016::09:37:37 ===
+           ts_client:(5:<0.450.0>) Server must have closed connection upon us, waiting 10 msec
+
+=INFO REPORT==== 1-Dec-2016::09:37:37 ===
+           ts_client:(5:<0.567.0>) connection close while sending message!
+
+=INFO REPORT==== 1-Dec-2016::09:37:37 ===
+           ts_client:(5:<0.567.0>) Server must have closed connection upon us, waiting 10 msec
+
+=INFO REPORT==== 1-Dec-2016::09:37:43 ===
+           ts_client:(5:<0.399.0>) connection close while sending message!
+
+=INFO REPORT==== 1-Dec-2016::09:37:43 ===
+           ts_client:(5:<0.399.0>) Server must have closed connection upon us, waiting 10 msec
+
+=INFO REPORT==== 1-Dec-2016::09:38:39 ===
+     ts_launcher_mgr:(5:<0.106.0>) No more active users 'tsung_controller@ip-172-31-5-239' "32405"
+
+=INFO REPORT==== 1-Dec-2016::09:38:40 ===
+              ts_mon:(5:<0.56.0>) stopping monitor (normal)

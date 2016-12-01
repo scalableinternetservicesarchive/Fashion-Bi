@@ -1,0 +1,145 @@
+<?xml version="1.0"?><tsung loglevel="notice" version="1.0">
+
+  <clients>
+    <client host="localhost" use_controller_vm="true" maxusers="15000"/>
+  </clients>
+
+  <servers>
+    <server host="fashion-bi-2xl-8-1681186424.us-west-2.elb.amazonaws.com" port="80" type="tcp"/>
+  </servers>
+
+
+  <load>
+    <arrivalphase phase="1" duration="30" unit="second">
+      <users arrivalrate="1" unit="second"/>
+    </arrivalphase>
+    <arrivalphase phase="2" duration="30" unit="second">
+      <users arrivalrate="2" unit="second"/>
+    </arrivalphase>
+    <arrivalphase phase="3" duration="30" unit="second">
+      <users arrivalrate="4" unit="second"/>
+    </arrivalphase>
+   <arrivalphase phase="4" duration="30" unit="second">
+     <users arrivalrate="8" unit="second"/>
+   </arrivalphase>
+
+           </load>
+
+  <options>
+    <option name="global_ack_timeout" value="2000"/>
+
+    <option type="ts_http" name="user_agent">
+      <user_agent probability="100">Mozilla/5.0 (Windows; U; Windows NT 5.2; fr-FR; rv:1.7.8) Gecko/20050511 Firefox/1.0.4</user_agent>
+    </option>
+  </options>
+
+  <sessions>
+    <session name="http-example" probability="100" type="ts_http">
+
+      <request>
+        <http url="/" version="1.1" method="GET"/>
+      </request>
+
+      <thinktime value="2" random="true"/>
+
+      <request>
+        <http url="/register" version="1.1" method="GET"/>
+      </request>
+
+      <thinktime value="2" random="true"/>
+
+      <setdynvars sourcetype="random_number" start="1000" end="9999999">
+          <var name="random_user_name"/>
+      </setdynvars>
+
+
+      <request subst="true">
+          <http url="/" version="1.1" method="POST" contents="user%5Bemail%5D=email_%%_random_user_name%%%40gmail.com&amp;user%5Bpassword%5D=password&amp;user%5Bpassword_confirmation%5D=password&amp;commit=Sign+up">
+          </http>
+      </request>
+
+      <thinktime value="3" random="true"/>
+
+      <request>
+        <http url="/photos" version="1.1" method="GET"/>
+      </request>
+
+      <request>
+        <http url="/photos/new" version="1.1" method="GET"/>
+      </request>
+
+      <thinktime value="2" random="true"/>
+
+      <setdynvars sourcetype="eval" code="fun({Pid,DynVars})-> [[13, 10]] end.">
+          <var name="nl"/>
+      </setdynvars>
+
+      <setdynvars sourcetype="eval" code="fun({Pid,DynVars})->           {ok, Bin} = file:read_file(&quot;jacket.jpg&quot;),           Bin           end.">
+        <var name="attached_file_jacket"/>
+      </setdynvars>
+
+      <setdynvars sourcetype="eval" code="fun({Pid,DynVars})->           {ok, Bin} = file:read_file(&quot;shirt.jpg&quot;),           Bin           end.">
+        <var name="attached_file_shirt"/>
+      </setdynvars>
+
+      <setdynvars sourcetype="eval" code="fun({Pid,DynVars})->           {ok, Bin} = file:read_file(&quot;pants.jpg&quot;),           Bin           end.">
+        <var name="attached_file_pants"/>
+      </setdynvars>
+
+      <setdynvars sourcetype="eval" code="fun({Pid,DynVars})->           {ok, Bin} = file:read_file(&quot;shoes.jpg&quot;),           Bin           end.">
+        <var name="attached_file_shoes"/>
+      </setdynvars>
+
+      <setdynvars sourcetype="random_number" start="1000" end="9999999">
+        <var name="random_submission_name"/>
+      </setdynvars>
+
+      <request subst="true">
+          <http url="/photos" version="1.1" method="POST" content_type="multipart/form-data; boundary=----FormBoundary" contents="------FormBoundary%%_nl%%Content-Disposition: form-data; name=&quot;photo[image]&quot;; filename=&quot;jacket_%%_random_submission_name%%.jpg&quot;%%_nl%%Content-Type: image/jpg%%_nl%%%%_nl%%%%_attached_file_jacket%%%%_nl%%------FormBoundary%%_nl%%Content-Disposition: form-data; name=&quot;commit&quot;%%_nl%%%%_nl%%Submit%%_nl%%------FormBoundary--%%_nl%%%%_nl%%">
+          </http>
+      </request>
+
+      <request>
+        <http url="/photos/new" version="1.1" method="GET"/>
+      </request>
+
+      <thinktime value="2" random="true"/>
+
+      <request subst="true">
+          <http url="/photos" version="1.1" method="POST" content_type="multipart/form-data; boundary=----FormBoundary" contents="------FormBoundary%%_nl%%Content-Disposition: form-data; name=&quot;photo[image]&quot;; filename=&quot;shirt_%%_random_submission_name%%.jpg&quot;%%_nl%%Content-Type: image/jpg%%_nl%%%%_nl%%%%_attached_file_shirt%%%%_nl%%------FormBoundary%%_nl%%Content-Disposition: form-data; name=&quot;commit&quot;%%_nl%%%%_nl%%Submit%%_nl%%------FormBoundary--%%_nl%%%%_nl%%">
+          </http>
+      </request>
+
+      <request>
+        <http url="/photos/new" version="1.1" method="GET"/>
+      </request>
+
+      <thinktime value="2" random="true"/>
+
+      <request subst="true">
+          <http url="/photos" version="1.1" method="POST" content_type="multipart/form-data; boundary=----FormBoundary" contents="------FormBoundary%%_nl%%Content-Disposition: form-data; name=&quot;photo[image]&quot;; filename=&quot;pants_%%_random_submission_name%%.jpg&quot;%%_nl%%Content-Type: image/jpg%%_nl%%%%_nl%%%%_attached_file_pants%%%%_nl%%------FormBoundary%%_nl%%Content-Disposition: form-data; name=&quot;commit&quot;%%_nl%%%%_nl%%Submit%%_nl%%------FormBoundary--%%_nl%%%%_nl%%">
+          </http>
+      </request>
+
+      <thinktime value="2" random="true"/>
+
+      <request subst="true">
+          <http url="/photos" version="1.1" method="POST" content_type="multipart/form-data; boundary=----FormBoundary" contents="------FormBoundary%%_nl%%Content-Disposition: form-data; name=&quot;photo[image]&quot;; filename=&quot;shoes_%%_random_submission_name%%.jpg&quot;%%_nl%%Content-Type: image/jpg%%_nl%%%%_nl%%%%_attached_file_shoes%%%%_nl%%------FormBoundary%%_nl%%Content-Disposition: form-data; name=&quot;commit&quot;%%_nl%%%%_nl%%Submit%%_nl%%------FormBoundary--%%_nl%%%%_nl%%">
+          </http>
+      </request>
+
+      <request>
+        <http url="/feed" version="1.1" method="GET"/>
+      </request>
+
+      <thinktime value="2" random="true"/>
+
+      <request>
+        <http url="/favorites" version="1.1" method="GET"/>
+      </request>
+
+      <thinktime value="2" random="true"/>
+
+    </session>
+  </sessions>
+</tsung>
