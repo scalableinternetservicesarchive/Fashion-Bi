@@ -1,29 +1,35 @@
-<p id="notice"><%= notice %></p>
-
-<h1>Favorites</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>User</th>
-      <th>Outfit</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @photos.each_slice(6) do |photo2| %>
-        <div class="item shadow">
-            <div class="outfits">
-                <%= image_tag(photo2[0].url(:square), :class => "item-img top") %>
-                <%= image_tag(photo2[1].url(:square), :class => "item-img") %>
-                <%= image_tag(photo2[2].url(:square), :class => "item-img") %>
-                <%= image_tag(photo2[3].url(:square), :class => "item-img") %>
+<section>
+  <div class="container text-xs-center">
+     <div class="row">
+        <div class="col-xs-12">
+            <div class="title text-xs-center">
+                <h1>Favorites</h1>
             </div>
-        </div>
-    <% end %>
-  </tbody>
-</table>
+       </div>
+     </div>
+     <div class="row">
+       <% if @photos.empty? %>
+        <p>You currently do not have any favorites.</p>
+       <% else %>
+           <% @photos.each_slice(6) do |photo| %>
+               <div class="item shadow">
+                   <div class="outfits">
+                       <%= image_tag(photo[1].url(:square), :class => "item-img") %>
+                       <%= image_tag(photo[0].url(:square), :class => "item-img") %>
+                       <%= image_tag(photo[2].url(:square), :class => "item-img") %>
+                       <%= image_tag(photo[3].url(:square), :class => "item-img") %>
+                   </div>
+                   <div class="actionbar">
+                       <%= link_to("/favorites/?id="+photo[4].to_s+"&like=0", method: :post, class: "x-icon", id: "remove") do %>
+                           <i class="fa fa-times fa-lg" aria-hidden="true"></i>
+                       <% end %>
+                   </div>
+               </div>
+           <% end %>
+       <% end %>
+     </div>
+   </div>
 
-<br>
 
+
+</section>

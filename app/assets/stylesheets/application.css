@@ -189,16 +189,14 @@ header .header-content {
     background-color: #fff;
     border-radius: 8px;
     display: inline-block;
-    width: 300px;
+    width: 500px;
 }
 
 .item-img {
-    width: 100%;
+    width: 45%;
     border-radius: 8px;
-}
-
-.item-img.top {
-    margin-bottom: 15px;
+    display: inline-block;
+    margin-bottom: 8px;
 }
 
 .actionbar {
@@ -236,6 +234,21 @@ th {
     background-color: #0275d8;
 }
 
+.item-edit-img {
+    width: 100%;
+    height: auto;
+    margin-bottom: 1em;
+}
+
+.radio-label {
+    display: block;
+}
+
+.form-check.radio {
+    display: inline-block;
+    margin: 0 20px;
+}
+
 @media(max-width: 34em) {
     .item {
         margin: 20px auto;
@@ -245,6 +258,10 @@ th {
 @media(max-width: 48em) {
     .title {
         max-width: 90%;
+    }
+
+    .item {
+        width: 90%;
     }
 }
 

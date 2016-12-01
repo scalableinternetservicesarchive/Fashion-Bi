@@ -1,43 +1,44 @@
 <section>
     <div class="container text-xs-center">
+        <% if @photos.empty? %>
+            <div class="row">
+              <div class="col-xs-12">
+                  <div class="title">
+                      <h1>No outfits available.</h1>
+                      <p>Add items to your <%= link_to('wardrobe', photos_path) %> to get started!</p>
+                  </div>
+              </div>
+            </div>
+        <% else %>
         <div class="row">
           <div class="col-xs-12">
               <div class="title">
                   <h1>Our Recommended Outfits</h1>
-                  <p>
-                      Each outfit below has been selected by our algorithms to fit your needs.
-                  </p>
+                  <p>Each outfit below has been selected by our algorithms to fit your needs.</p>
               </div>
           </div>
         </div>
-        <div class="row">
-            <% @photos.each_slice(6) do |photo2| %>
-                <div class="item shadow">
-                    <div class="outfits">
-                        <%= image_tag(photo2[0].url(:square), :class => "item-img top") %>
-                        <%= image_tag(photo2[1].url(:square), :class => "item-img") %>
-                        <%= image_tag(photo2[2].url(:square), :class => "item-img") %>
-                        <%= image_tag(photo2[3].url(:square), :class => "item-img") %>
+            <div class="row">
+                <% @photos.each_slice(6) do |photo| %>
+                    <div class="item shadow">
+                        <div class="outfits">
+                            <%= image_tag(photo[1].url(:square), :class => "item-img") %>
+                            <%= image_tag(photo[0].url(:square), :class => "item-img") %>
+                            <%= image_tag(photo[2].url(:square), :class => "item-img") %>
+                            <%= image_tag(photo[3].url(:square), :class => "item-img") %>
+                        </div>
+                        <div class="actionbar">
+                            <%= link_to("/favorites?id="+photo[4].to_s+"&like=1", method: :post, class: "heart-icon") do %>
+                                <i class="fa fa-heart fa-lg" aria-hidden="true"></i>
+                            <% end %>
+                            <%= link_to("/favorites/?id="+photo[4].to_s+"&like=0", method: :post, class: "x-icon") do %>
+                                <i class="fa fa-times fa-lg" aria-hidden="true"></i>
+                            <% end %>
+                        </div>
                     </div>
-                    <div class="actionbar">
-                        <%= button_to "Like", "/favorites?id="+photo2[4].to_s+"&like=1", method: :post, class: "btn btn-edit"%>
-                        <%= button_to "Unlike", "/favorites/?id="+photo2[4].to_s+"&like=0", method: :post, class: "btn btn-edit"%>
-                        <a class="heart-icon" href="#"><i class="fa fa-heart fa-lg" aria-hidden="true"></i></a>
-                        <a class="x-icon" href="#"><i class="fa fa-times fa-lg" aria-hidden="true"></i></a>
-                    </div>
-                </div>
-            <% end %>
-            <div class="item shadow">
-                <div class="outfits">
-                    <img class="item-img top" src="https://placekitten.com/g/500/500" alt="Top" />
-                    <img class="item-img" src="https://placekitten.com/g/500/500" alt="Top" />
-                </div>
-                <div class="actionbar">
-                    <a class="heart-icon" href="#"><i class="fa fa-heart fa-lg" aria-hidden="true"></i></a>
-                    <a class="x-icon" href="#"><i class="fa fa-times fa-lg" aria-hidden="true"></i></a>
-                </div>
+                <% end %>
             </div>
-        </div>
+        <% end %>
     </div>
 </section>
 
