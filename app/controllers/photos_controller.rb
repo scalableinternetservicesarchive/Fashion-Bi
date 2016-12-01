@@ -6,6 +6,7 @@ class PhotosController < ApplicationController
   # GET /photos.json
   def index
     @photos = Photo.where(user_id: current_user.email)
+    stale?(@photos, public: true)
   end
 
   # GET /photos/1
@@ -118,6 +119,7 @@ class PhotosController < ApplicationController
     @photo.style = params[:style]
     if @photo.save
       flash[:notice] = "The photo has been edited successfully."
+      OutfitRec.delete_all
       redirect_to action: "index"
     else
       flash[:notice] = "Failed to edit photo."
