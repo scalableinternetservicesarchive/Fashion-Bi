@@ -5,7 +5,7 @@ class FavoritesController < ApplicationController
   # GET /favorites
   # GET /favorites.json
   def index
-    @stored_recs = OutfitRec.where("user_id = ? AND like = ?", current_user.email, 1)
+    @stored_recs = OutfitRec.where("user_id = ? AND outfit_recs.like = ?", current_user.email, 1)
     @photos = Array.new
     @stored_recs.each do |rec|
       @c_ids = rec.clothes_ids.split(" ").map { |s| s.to_i }
@@ -37,7 +37,7 @@ class FavoritesController < ApplicationController
   def create
     @outfit_id = params[:id]
     @like = params[:like]
-    
+
     OutfitRec.transaction do
         outfit = OutfitRec.lock.find(@outfit_id)
         outfit.like = @like # mark outfit as liked

@@ -9,25 +9,25 @@
 
   <!-- Server side setup IP tbd, need to wait until we deploy -->
   <servers>
-    <server host="35.161.182.252" port="80" type="tcp"></server>
+    <server host="35.165.77.168" port="80" type="tcp"></server>
   </servers>
 
 
   <load>
-    <arrivalphase phase="1" duration="5" unit="second">
+    <arrivalphase phase="1" duration="15" unit="second">
       <users arrivalrate="1" unit="second"></users>
     </arrivalphase>
-      <!--
+        <!--
     <arrivalphase phase="2" duration="30" unit="second">
       <users arrivalrate="2" unit="second"></users>
     </arrivalphase>
     <arrivalphase phase="3" duration="30" unit="second">
       <users arrivalrate="4" unit="second"></users>
     </arrivalphase>
+
    <arrivalphase phase="4" duration="30" unit="second">
      <users arrivalrate="8" unit="second"></users>
    </arrivalphase>
-
    <arrivalphase phase="5" duration="30" unit="second">
      <users arrivalrate="16" unit="second"></users>
    </arrivalphase>
@@ -117,18 +117,34 @@
 
       <setdynvars sourcetype="eval"
         code='fun({Pid,DynVars})->
-          {ok, Bin} = file:read_file("denim.jpg"),
+          {ok, Bin} = file:read_file("jacket.jpg"),
           Bin
           end.'>
-        <var name="attached_file_1" />
+        <var name="attached_file_jacket" />
       </setdynvars>
 
       <setdynvars sourcetype="eval"
         code='fun({Pid,DynVars})->
-          {ok, Bin} = file:read_file("tee.jpg"),
+          {ok, Bin} = file:read_file("shirt.jpg"),
           Bin
           end.'>
-        <var name="attached_file_2" />
+        <var name="attached_file_shirt" />
+      </setdynvars>
+
+      <setdynvars sourcetype="eval"
+        code='fun({Pid,DynVars})->
+          {ok, Bin} = file:read_file("pants.jpg"),
+          Bin
+          end.'>
+        <var name="attached_file_pants" />
+      </setdynvars>
+
+      <setdynvars sourcetype="eval"
+        code='fun({Pid,DynVars})->
+          {ok, Bin} = file:read_file("shoes.jpg"),
+          Bin
+          end.'>
+        <var name="attached_file_shoes" />
       </setdynvars>
 
       <setdynvars sourcetype="random_number" start="1000" end="9999999">
@@ -141,16 +157,9 @@
               version="1.1"
               method="POST"
               content_type='multipart/form-data; boundary=----FormBoundary'
-              contents='------FormBoundary%%_nl%%Content-Disposition: form-data; name="photo[image]"; filename="tee%%_random_submission_name%%.jpg"%%_nl%%Content-Type: image/png%%_nl%%%%_nl%%%%_attached_file_2%%%%_nl%%------FormBoundary%%_nl%%Content-Disposition: form-data; name="commit"%%_nl%%%%_nl%%Submit%%_nl%%------FormBoundary--%%_nl%%%%_nl%%'>
+              contents='------FormBoundary%%_nl%%Content-Disposition: form-data; name="photo[image]"; filename="jacket_%%_random_submission_name%%.jpg"%%_nl%%Content-Type: image/jpg%%_nl%%%%_nl%%%%_attached_file_jacket%%%%_nl%%------FormBoundary%%_nl%%Content-Disposition: form-data; name="commit"%%_nl%%%%_nl%%Submit%%_nl%%------FormBoundary--%%_nl%%%%_nl%%'>
           </http>
       </request>
-
-      <!--  go to wardrobe to check closet -->
-      <request>
-        <http url='/photos' version='1.1' method='GET'></http>
-      </request>
-
-      <thinktime value="2" random="true"></thinktime>
 
       <!-- Upload another picture -->
       <request>
@@ -166,10 +175,40 @@
               version="1.1"
               method="POST"
               content_type='multipart/form-data; boundary=----FormBoundary'
-              contents='------FormBoundary%%_nl%%Content-Disposition: form-data; name="photo[image]"; filename="denim_%%_random_submission_name%%.jpg"%%_nl%%Content-Type: image/png%%_nl%%%%_nl%%%%_attached_file_1%%%%_nl%%------FormBoundary%%_nl%%Content-Disposition: form-data; name="commit"%%_nl%%%%_nl%%Submit%%_nl%%------FormBoundary--%%_nl%%%%_nl%%'>
+              contents='------FormBoundary%%_nl%%Content-Disposition: form-data; name="photo[image]"; filename="shirt_%%_random_submission_name%%.jpg"%%_nl%%Content-Type: image/jpg%%_nl%%%%_nl%%%%_attached_file_shirt%%%%_nl%%------FormBoundary%%_nl%%Content-Disposition: form-data; name="commit"%%_nl%%%%_nl%%Submit%%_nl%%------FormBoundary--%%_nl%%%%_nl%%'>
           </http>
       </request>
 
+      <!-- Upload another picture -->
+      <request>
+        <http url='/photos/new' version='1.1' method='GET'></http>
+      </request>
+
+      <!-- wait for up to 2 seconds, user is filling out form -->
+      <thinktime value="2" random="true"></thinktime>
+
+      <request subst="true">
+          <http
+              url="/photos"
+              version="1.1"
+              method="POST"
+              content_type='multipart/form-data; boundary=----FormBoundary'
+              contents='------FormBoundary%%_nl%%Content-Disposition: form-data; name="photo[image]"; filename="pants_%%_random_submission_name%%.jpg"%%_nl%%Content-Type: image/jpg%%_nl%%%%_nl%%%%_attached_file_pants%%%%_nl%%------FormBoundary%%_nl%%Content-Disposition: form-data; name="commit"%%_nl%%%%_nl%%Submit%%_nl%%------FormBoundary--%%_nl%%%%_nl%%'>
+          </http>
+      </request>
+
+      <!-- wait for up to 2 seconds, user is filling out form -->
+      <thinktime value="2" random="true"></thinktime>
+
+      <request subst="true">
+          <http
+              url="/photos"
+              version="1.1"
+              method="POST"
+              content_type='multipart/form-data; boundary=----FormBoundary'
+              contents='------FormBoundary%%_nl%%Content-Disposition: form-data; name="photo[image]"; filename="shoes_%%_random_submission_name%%.jpg"%%_nl%%Content-Type: image/jpg%%_nl%%%%_nl%%%%_attached_file_shoes%%%%_nl%%------FormBoundary%%_nl%%Content-Disposition: form-data; name="commit"%%_nl%%%%_nl%%Submit%%_nl%%------FormBoundary--%%_nl%%%%_nl%%'>
+          </http>
+      </request>
 
       <!--  go back to feed page to look at oufit recommendations -->
       <request>
