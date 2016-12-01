@@ -28,18 +28,18 @@
 
             <tbody>
                <% @photos.each do |photo| %>
-
-                  <tr>
-                     <td><%= photo.category %></td>
-                     <td><%= photo.color %></td>
-                     <td><%= image_tag photo.image.url(:square) %></td>
-                     <td><%= photo.style %></td>
-                     <td>
-                       <%= button_to "Delete", photo, method: :delete, class: "btn btn-danger", confirm: "Are you sure that you wish to delete this photo?" %>
-                       <%= button_to "Edit", "/photos/" + photo.id.to_s + "/edit", method: :get,  class: "btn btn-edit" %>
-                     </td>
-                  </tr>
-
+                   <% cache(cache_key_for_photo_row(photo)) do %>
+                      <tr>
+                         <td><%= photo.category %></td>
+                         <td><%= photo.color %></td>
+                         <td><%= image_tag photo.image.url(:square) %></td>
+                         <td><%= photo.style %></td>
+                         <td>
+                           <%= button_to "Delete", photo, method: :delete, class: "btn btn-danger", confirm: "Are you sure that you wish to delete this photo?" %>
+                           <%= button_to "Edit", "/photos/" + photo.id.to_s + "/edit", method: :get,  class: "btn btn-edit" %>
+                         </td>
+                      </tr>
+                   <% end%>
                <% end %>
             </tbody>
 
