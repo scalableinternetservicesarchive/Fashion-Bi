@@ -18,10 +18,10 @@ class StaticPagesController < ApplicationController
     @stored_recs = OutfitRec.where(user_id: current_user.email)
     if @stored_recs.empty?
       print "have to generate new recs"
-      @shirts = Photo.where("user_id = ? AND category = \'shirt\'", current_user.email)
-      @jackets = Photo.where("user_id = ? AND category = \'jacket\'", current_user.email)
-      @pants = Photo.where("user_id = ? AND category = \'pants\'", current_user.email)
-      @shoes = Photo.where("user_id = ? AND category = \'shoes\'", current_user.email)
+      @shirts = Photo.where("user_id = ? AND category = \'shirt\'", current_user.email).to_a.shuffle
+      @jackets = Photo.where("user_id = ? AND category = \'jacket\'", current_user.email).to_a.shuffle
+      @pants = Photo.where("user_id = ? AND category = \'pants\'", current_user.email).to_a.shuffle
+      @shoes = Photo.where("user_id = ? AND category = \'shoes\'", current_user.email).to_a.shuffle
 
       @sz_shirts = @shirts.size
       @sz_jackets = @jackets.size
@@ -41,32 +41,56 @@ class StaticPagesController < ApplicationController
 
       @it = 0
       while @it < @sz_min do
-        @c_shirt = @shirts.first
+        @c_shirt = @shirts.last
         @shirt_color = @c_shirt.color
 
         # pant color should be different from shirt color if possible
-        @c_pant = @pants.where("color <> ?", @shirt_color).first
+        @c_pant = nil
+        @pants.each do |pant|
+          if pant.color != @c_shirt.color
+            @c_pant = pant
+            break
+          end
+        end
+        #@c_pant = @pants.where("color <> ?", @shirt_color).first
         if @c_pant.nil?
-          @c_pant = @pants.first
+          @c_pant = @pants.last
         end
         @pant_color = @c_pant.color
 
         # jacket color should be different from shirt and pant color if possible
-        @c_jacket = @jackets.where("color <> ? AND color <> ?", @shirt_color, @pant_color).first
+        @c_jacket = nil
+        @jackets.each do |jacket|
+          if jacket.color != @c_shirt.color and jacket.color != @c_pant.color
+            @c_jacket = jacket
+            break
+          end
+        end
+        #@c_jacket = @jackets.where("color <> ? AND color <> ?", @shirt_color, @pant_color).first
         if @c_jacket.nil?
-          @c_jacket = @jackets.first
+          @c_jacket = @jackets.last
         end
 
-        @c_shoes = @shoes.where("color = ?", @shirt_color).first
+        @c_shoes = nil
+        @shoes.each do |shoe|
+          if shoe.color == @c_shirt.color
+            @c_shoes = shoe
+            break
+          end
+        end
+        #@c_shoes = @shoes.where("color = ?", @shirt_color).first
         if @c_shoes.nil?
-          @c_shoes = @shoes.first
+          @c_shoes = @shoes.last
         end
 
-        @shirts = @shirts.where("id <> ?", @c_shirt.id)
-        @jackets = @jackets.where("id <> ?", @c_jacket.id)
-        @pants = @pants.where("id <> ?", @c_pant.id)
-        @shoes = @shoes.where("id <> ?", @c_shoes.id)
-
+        # @shirts = @shirts.where("id <> ?", @c_shirt.id)
+        # @jackets = @jackets.where("id <> ?", @c_jacket.id)
+        # @pants = @pants.where("id <> ?", @c_pant.id)
+        # @shoes = @shoes.where("id <> ?", @c_shoes.id)
+        @shirts.delete(@c_shirt)
+        @pants.delete(@c_pant)
+        @jackets.delete(@c_jacket)
+        @shoes.delete(@c_shoes)
 
         @outfit_rec = OutfitRec.new
 
