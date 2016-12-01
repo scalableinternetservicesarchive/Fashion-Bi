@@ -18,10 +18,10 @@ class StaticPagesController < ApplicationController
     @stored_recs = OutfitRec.where(user_id: current_user.email)
     if @stored_recs.empty?
       print "have to generate new recs"
-      @shirts = Photo.where("user_id = ? AND category = \'shirt\'", current_user.email).order("RANDOM()")
-      @jackets = Photo.where("user_id = ? AND category = \'jacket\'", current_user.email).order("RANDOM()")
-      @pants = Photo.where("user_id = ? AND category = \'pants\'", current_user.email).order("RANDOM()")
-      @shoes = Photo.where("user_id = ? AND category = \'shoes\'", current_user.email).order("RANDOM()")
+      @shirts = Photo.where("user_id = ? AND category = \'shirt\'", current_user.email)
+      @jackets = Photo.where("user_id = ? AND category = \'jacket\'", current_user.email)
+      @pants = Photo.where("user_id = ? AND category = \'pants\'", current_user.email)
+      @shoes = Photo.where("user_id = ? AND category = \'shoes\'", current_user.email)
 
       @sz_shirts = @shirts.size
       @sz_jackets = @jackets.size
