@@ -12,6 +12,7 @@
         <p>You currently do not have any favorites.</p>
        <% else %>
            <% @photos.each_slice(6) do |photo| %>
+             <% cache(cache_key_for_rec_collage(photo)) do %>
                <div class="item shadow">
                    <div class="outfits">
                        <%= image_tag(photo[1].url(:square), :class => "item-img") %>
@@ -25,6 +26,7 @@
                        <% end %>
                    </div>
                </div>
+             <% end %>
            <% end %>
        <% end %>
      </div>
