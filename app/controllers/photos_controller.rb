@@ -130,6 +130,7 @@ class PhotosController < ApplicationController
   def destroy
     @photo = Photo.find(params[:id])
     @photo.destroy
+    OutfitRec.delete_all
     flash[:notice] = "The photo has been deleted."
     redirect_to action: "index"
   end
